@@ -1,2 +1,10 @@
-# Cosc310Proj
-Project for Cosc310. 2024 01 17
+## COSC 310 Group Project
+
+Group project repository for COSC 310.
+
+## Features
+- Add features
+
+## Built Using
+
+- Add built using

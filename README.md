@@ -6,7 +6,7 @@ Group project repository for COSC 310.
 - Kyle McLeod
 - Justin Drenka
 - Maximilian Bigwood
-- 
+- Kussh Satija
 
 ## Features
 - Add features

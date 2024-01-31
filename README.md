@@ -7,7 +7,7 @@ Our project is an **event ticketing software** that allows event organizers to e
 - Transfer tickets between users
 - Purchase ticket(s)
 - Choose seats
-- Ticket reciept sent to email
+- Ticket receipt sent to email
 - Share event link to others via social media
 - Filter events based on date, location or price
 - Use coupon codes
@@ -17,6 +17,7 @@ Our project is an **event ticketing software** that allows event organizers to e
 - Leave reviews on events
 - Help page/customer support
 - Refund and exchange options
+
 
 ## Group Members
 - Kyle McLeod

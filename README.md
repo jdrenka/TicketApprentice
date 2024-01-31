@@ -1,20 +1,20 @@
 ## Alpha Brains - COSC 310 Group Project
 
-Our project is an event ticketing software that allows event organizers to easily sell tickets.
+Our project is an **event ticketing software** that allows event organizers to easily sell tickets online. Users on our page can create and customize events, as well as browse events close to their location. Event organizers have the ability to include key information such as event **date, time, description, location and ticket price**. 
+
 ## User Requirements
 - Login / logout
 - Transfer tickets between users
-- Purchase multiple tickets
+- Purchase ticket(s)
 - Choose seats
-- Ticket reciept sent to email 
+- Ticket reciept sent to email
+- Share event link to others via social media
 - Filter events based on date, location or price
-- Coupon codes
-- Referral program
+- Use coupon codes
+- Refer other users
 - Profile page with customer details
 - Payment
-- Reviews on event
-- Admin panel with statistics and analytics
-- SQL database
+- Leave reviews on events
 - Help page/customer support
 - Refund and exchange options
 
@@ -24,9 +24,6 @@ Our project is an event ticketing software that allows event organizers to easil
 - Maximilian Bigwood
 - Kussh Satija
 
-## Features
-- Add features
-
 ## Built Using
 
-- Add built using
+- TODO

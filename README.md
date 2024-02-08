@@ -5,8 +5,8 @@ Our project is an **event ticketing software** that allows event organizers to e
 ## How to run the application
 1) Download node.js - [Download here](https://nodejs.org/en).
 2) Clone GitHub repository to IDE (VS Code) - [How to clone here](https://learn.microsoft.com/en-us/azure/developer/javascript/how-to/with-visual-studio-code/clone-github-repository?tabs=activity-bar).
-3) Open system terminal in VS Code (CTRL + ` ) and type ```npm install``` to install dependencies.
-4) Locate app.js in the VS code file explorer and Right Click -> Open in Integrated Terminal.
+3) Locate **package.json** file in the VS code file explorer and Right Click -> Open in Integrated Terminal and type ```npm install``` to install dependencies.
+4) Locate **app.js** file in the VS code file explorer and Right Click -> Open in Integrated Terminal.
 5) Type in console ```node app.js```.
 6) Console should prompt "Server running on port 3000". To access webpage, type ```localhost:3000``` into your web browser.
 

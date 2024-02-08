@@ -33,4 +33,8 @@ Our project is an **event ticketing software** that allows event organizers to e
 - Kussh Satija
   
 ## Built Using
-- TODO
+- Node.js
+- HTML/CSS
+- Javascript
+- MySQL Database 
+

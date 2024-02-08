@@ -37,4 +37,5 @@ Our project is an **event ticketing software** that allows event organizers to e
 - HTML/CSS
 - Javascript
 - MySQL Database 
+- ExpressJS
 

@@ -1,6 +1,6 @@
 ## Alpha Brains - COSC 310 Group Project
 
-Our project is an **event ticketing software** that allows event organizers to easily sell tickets online. Users on our page can create and customize events, as well as browse events close to their location. Event organizers have the ability to include key information such as event **date, time, description, location and ticket price**. 
+Our project is an event ticketing software that allows event organizers to easily sell tickets online. Users on our page can create and customize events, as well as browse events close to their location. Event organizers have the ability to include key information such as event date, time, description, location and ticket price. Each event listed by an event organizer will go through a verification process by an admin. The system will have a secure payment gateway so users can feel confident while making a transaction. The user-centric design will provide easy navigation and a seamless experience.. 
 
 ## How to run the application
 1) Download node.js - [Download here](https://nodejs.org/en).

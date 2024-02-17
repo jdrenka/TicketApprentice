@@ -26,10 +26,29 @@ Our project is an event ticketing software that allows event organizers to easil
 - Refund and exchange options
 
 ## Functional Requirements
-- TODO
+- Users will have the ability to search/sort for events by name, location, activity type and/or ticket price.
+- The system will provide a list of events matching search criteria.
+- Users will be able to add or remove tickets to their shopping cart; including multiple tickets and tickets from different events.
+- Users will be able to choose their preferences such as seats (depending on event type) when choosing tickets.
+- The system will validate availability and execute transactions.
+- Users will have the ability to add, remove, or modify payment information.
+- Upon purchase, an email will be sent to the user's registered email with an order summary.
+- Users will also have the ability to apply to become an event organizer
+- Event organizers will be able to propose events which are then reviewed by an admin.
+- Event organizers will be able to adjust event information such as number of tickets, price of tickets, date, name of event, etc.
+- Event organizers will then confirm and publish their event on the platform.
+
 
 ## Non-Functional Requirements
-- TODO
+- System will be able to handle a large amount of users at one time without slowing down the system a significant amount.
+- System will have secure payment processing that keeps event organizers and users information safe.
+- The system will be scalable and will be designed so it can handle more transactions in the future.
+- The system will work flawlessly on popular web browsers like Chrome, FireFox, Safari etc.
+- The system will be compatible with mobile phones.
+- The system will comply with data protection and privacy regulations.
+- The system uptime will be kept up at least 99.9% of the time.
+- System will be reliable with minimal downtime and backups will be kept in case of data loss.
+
   
 ## Group Members
 - Kyle McLeod

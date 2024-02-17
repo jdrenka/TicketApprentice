@@ -22,6 +22,7 @@ body {
   font-size: 18px;
   line-height: 25px;
   border-radius: 4px;
+  font-weight: 600;
 }
   
 .header a.logo {
@@ -62,22 +63,27 @@ body {
 
 .main-content {
   display: flex;
-  justify-content: left;
+  justify-content: space-between; /* Adjusted to create space between text and image */
   align-items: center;
-  height: 80vh; 
-  padding-left: 10%;
+  height: 60vh; 
+  padding: 0 10%; /* Adjusted to create space on the sides */
   color: #ffffff;
 }
 
 .text-area {
   text-align: left;
-  max-width: 600px; /* Set a maximum width for the text area */
+  max-width: 600px;
   padding: 20px;
 }
 
 .text-area h1 {
   font-size: 72px;
   margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.text-area h1 strong {
+  font-weight: 800;
 }
 
 .text-area p {
@@ -91,14 +97,21 @@ body {
   color: white;
   padding: 10px 20px;
   border-radius: 20px;
-  font-size: 20px;
+  font-size: 18px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  font-weight: 600;
 }
 
 .get-started:hover {
   background-color: #1e90ff; /* Darker blue on hover */
   color: white;
 }
-  
+
+.side-image {
+  max-width: 50%; /* Ensure the image doesn't exceed its container's width */
+  height: auto; /* Maintain the image's aspect ratio */
+  margin-left: 20px; /* Adjust the margin as needed */
+}
+

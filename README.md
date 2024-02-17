@@ -27,6 +27,9 @@ Our project is an event ticketing software that allows event organizers to easil
 
 ## Functional Requirements
 - TODO
+
+## Non-Functional Requirements
+- TODO
   
 ## Group Members
 - Kyle McLeod

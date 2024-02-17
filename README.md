@@ -24,6 +24,9 @@ Our project is an event ticketing software that allows event organizers to easil
 - Leave reviews on events
 - Help page/customer support
 - Refund and exchange options
+
+## Functional Requirements
+- TODO
   
 ## Group Members
 - Kyle McLeod

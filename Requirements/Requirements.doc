@@ -1,0 +1,14 @@
+Functional Requirements:
+
+1. User will have the ability to search/sort for events by name, location, activity type and/or ticket price.
+2. The system will provide list of events matching search criteria.
+3. Users will be able to add or remove tickets to their shopping cart; including multiple tickets and tickets form different events.
+4. Users will be able to choose their preferences such as seats (depending on event type) when choosing tickets.
+5. The system will validate availability and execute transaction.
+6. Users will have the ability to add, remove, or modify payment information.
+7. Upon purchase, an email will be sent to the user's registered email with an order summary.
+8. Users will also have the ability to apply to become an event organizer
+9. Event organizers will be able to propose events which is then reviewed by an admin.
+10. Event organizers will be able to adjust event information such as number of tickets, price of tickets, date, name of event, etc.
+11. Event organizers will then confirm and publish their event on the platform.
+** Modify to add more **

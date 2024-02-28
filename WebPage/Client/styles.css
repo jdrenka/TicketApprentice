@@ -115,3 +115,31 @@ body {
   margin-left: 20px; /* Adjust the margin as needed */
 }
 
+.fade-in1{
+  opacity: 0;
+  animation: fadeInAnimation 0.5s ease-in-out forwards;
+}
+
+.fade-in2{
+  opacity: 0;
+  animation: fadeInAnimation 1s ease-in-out forwards;
+}
+
+.fade-in3{
+  opacity: 0;
+  animation: fadeInAnimation 1.5s ease-in-out forwards;
+}
+.fade-in4{
+  opacity: 0;
+  animation: fadeInAnimation 2s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

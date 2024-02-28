@@ -133,6 +133,10 @@ body {
   opacity: 0;
   animation: fadeInAnimation 2s ease-in-out forwards;
 }
+.fade-in5{
+  opacity: 0;
+  animation: fadeInAnimation 2.5s ease-in-out forwards;
+}
 
 @keyframes fadeInAnimation {
   from {

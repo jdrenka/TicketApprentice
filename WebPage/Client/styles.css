@@ -105,7 +105,7 @@ body {
 }
 
 .get-started:hover {
-  background-color: #1e90ff; /* Darker blue on hover */
+  background-color: #1e90ff;
   color: white;
 }
 
@@ -150,9 +150,10 @@ body .event-card {
   background-color: #201F1F;
   color: #ffffff;
   transition: box-shadow 0.3s ease;
+  border-radius: 20px;
 }
 body .event-card:hover {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
 }
 .card.event-card .card-body {
   text-align: left !important;
@@ -171,6 +172,21 @@ body .event-card:hover {
 .left-text {
   text-align: left;
   color: white;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.center-text {
+  text-align: center;
+  color: white;
   font-weight: bold;
   font-size: 40px;
+}
+.btn-color {
+  background-color: #3B5CFF; 
+  color: #ffffff !important;
+}
+
+.btn-color:hover {
+  background-color: #1e90ff; /* Set a slightly different color on hover if desired */
 }

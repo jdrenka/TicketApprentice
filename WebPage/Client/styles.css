@@ -146,4 +146,31 @@ body {
     opacity: 1;
   }
 }
-
+body .event-card {
+  background-color: #201F1F;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+}
+body .event-card:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+.card.event-card .card-body {
+  text-align: left !important;
+}
+.card.event-card .card-body p {
+  font-weight: 200; /* Adjust the font weight (e.g., 300 for thinner) */
+}
+.card.event-card {
+  border: none !important; /* Remove the border */
+}
+.card.event-card .card-img-top {
+  border-radius: 20px; /* Adjust the border-radius to control the roundness */
+  max-height: 150px;
+  object-fit: cover;
+}
+.left-text {
+  text-align: left;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+}

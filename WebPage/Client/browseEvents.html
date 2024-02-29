@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- =================================================================================== -->
+  <!-- ============================== PAGE CODE STARTS HERE ============================== -->
+  <!-- =================================================================================== -->
+
+
   <!-- Header -->
   <script src="includeheader.js"></script>
   </div>
@@ -31,11 +37,12 @@
 
 
 
-<!-- Categories -->
+<!-- Categories tab - we will replace the placeholders with categories stored in our SQL database. -->
   <div class="container mt-5 fade-in1">
-    <div class="row justify-content-center"> <!-- Center the grid -->
-      <!-- Product 1 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <!-- Three columns on medium and larger screens -->
+    <div class="row justify-content-center">
+
+      <!-- Category 1 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">
           <img src="Images/Event.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
@@ -45,8 +52,8 @@
         </div>
       </div>
 
-      <!-- Product 1 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <!-- Three columns on medium and larger screens -->
+      <!-- Category 2 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">
           <img src="Images/Event.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
@@ -56,8 +63,8 @@
         </div>
       </div>
 
-      <!-- Product 1 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <!-- Three columns on medium and larger screens -->
+      <!-- Category 3 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">
           <img src="Images/Event.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
@@ -67,8 +74,8 @@
         </div>
       </div>
 
-      <!-- Product 1 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4"> <!-- Three columns on medium and larger screens -->
+      <!-- Category 4 -->
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">
           <img src="Images/Event.jpeg" class="card-img-top" alt="...">
           <div class="card-body">
@@ -81,13 +88,13 @@
   </div>
 
 
-<!-- Product Images Section -->
+<!-- Featured events section - we will later replace the placeholders with actual events stored in our database. Use while loop to retrieve all events. -->
 <div class="container mt-5 fade-in1">
   <div class="left-text">Featured Events</div>
-  <br>
-  <div class="row justify-content-center"> <!-- Center the grid -->
-    <!-- Product 1 -->
-    <div class="col-md-4 mb-4"> <!-- Three columns on medium and larger screens -->
+    <br>
+  <div class="row justify-content-center">
+    <!-- Event 1 -->
+    <div class="col-md-4 mb-4"> 
       <div class="card event-card">
         <img src="Images/Event.jpeg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -98,7 +105,7 @@
       </div>
     </div>
 
-    <!-- Product 2 -->
+    <!-- Event 2 -->
     <div class="col-md-4 mb-4">
       <div class="card event-card">
         <img src="Images/Event.jpeg" class="card-img-top" alt="...">
@@ -110,7 +117,7 @@
       </div>
     </div>
 
-    <!-- Product 3 -->
+    <!-- Event 3 -->
     <div class="col-md-4 mb-4">
       <div class="card event-card">
         <img src="Images/Event.jpeg" class="card-img-top" alt="...">
@@ -122,48 +129,56 @@
       </div>
     </div>
 
-        <!-- Product 4 -->
-        <div class="col-md-4 mb-4"> <!-- Three columns on medium and larger screens -->
-          <div class="card event-card">
-            <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Event title</h5>
-              <p class="card-text">Location and details here.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div>
+    <!-- Event 4 -->
+    <div class="col-md-4 mb-4">
+      <div class="card event-card">
+        <img src="Images/Event.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Event title</h5>
+          <p class="card-text">Location and details here.</p>
+          <a href="#" class="stretched-link"></a>
         </div>
+      </div>
+    </div>
     
-        <!-- Product 5 -->
-        <div class="col-md-4 mb-4">
-          <div class="card event-card">
-            <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Event title</h5>
-              <p class="card-text">Location and details here.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div>
+    <!-- Event 5 -->
+    <div class="col-md-4 mb-4">
+      <div class="card event-card">
+        <img src="Images/Event.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Event title</h5>
+          <p class="card-text">Location and details here.</p>
+          <a href="#" class="stretched-link"></a>
         </div>
+      </div>
+    </div>
     
-        <!-- Product 6 -->
-        <div class="col-md-4 mb-4">
-          <div class="card event-card">
-            <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Event title</h5>
-              <p class="card-text">Location and details here.</p>
-              <a href="#" class="stretched-link"></a>
-            </div>
-          </div>
+    <!-- Event 6 -->
+    <div class="col-md-4 mb-4">
+      <div class="card event-card">
+        <img src="Images/Event.jpeg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Event title</h5>
+          <p class="card-text">Location and details here.</p>
+          <a href="#" class="stretched-link"></a>
         </div>
-
+      </div>
+    </div>
   </div>
 </div>
 
-    <!-- Footer -->
-    <script src="includefooter.js"></script>
+  <!-- Footer -->
+  <script src="includefooter.js"></script>
     
+
+
+    
+  <!-- =================================================================================== -->
+  <!-- ============================== PAGE CODE ENDS HERE ============================== -->
+  <!-- =================================================================================== -->
+
+
+
   <!-- Bootstrap JS (Optional, only required if you use certain Bootstrap components) -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>

@@ -63,8 +63,3 @@ Our project is an event ticketing software that allows event organizers to easil
 - Javascript
 - MySQL Database 
 - ExpressJS
-
-
-test message 
-
-

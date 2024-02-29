@@ -6,21 +6,35 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <!-- Header -->
   <script src="includeheader.js"></script>
 
+
+  <!-- Video Background -->
+  <video autoplay muted loop id="bgVideo" class="fade-in3">
+    <source src="Videos/landing1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+
   <!-- Main content left side -->
+  <br>
   <div class="main-content fade-in1">
-    <div class="text-area fade-in2">
+    <div class="text-area">
         <h1><strong>Buy</strong> and <strong>sell</strong> tickets.</h1>
         <p>Unlock the all-in-one platform for seamless community building, event hosting, and unforgettable memories. 
           Simplify connections and celebrations with our versatile solution, redefining the way you engage and interact effortlessly.</p>
-        <button class="btn btn-primary get-started fade-in3">Get Started</button>
+        <button class="btn button2 btn-primary get-started fade-in3" onclick="redirectToSignIn()">Get Started</button>
+        <script>
+          function redirectToSignIn() {
+            window.location.href = 'signIn.html';
+          }
+        </script>
     </div>
-    <!-- Main content right side -->
-    <img src="Images\Event.jpeg" alt="Image Description" class="side-image fade-in4">
+
   </div>
 
   <!-- Bootstrap JS (Optional, only required if you use certain Bootstrap components) -->

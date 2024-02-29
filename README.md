@@ -9,6 +9,17 @@ Our project is an event ticketing software that allows event organizers to easil
 4) Locate **app.js** file in the VS code file explorer and Right Click -> Open in Integrated Terminal and type ```node app.js```.
 5) Console should prompt "Server running on port 3000". To access webpage, type ```localhost:3000``` into your web browser.
 
+
+## Database GUI Connection 
+1) Install MySQLWorkbench or similar SQL GUI. 
+2) Create a new connection in the GUI.
+3) Use the following information for the connection (TCP/IP):
+    - Hostname: alphabrainsdb.c1i22w4g43sf.us-west-1.rds.amazonaws.com
+    - Port: 3306 
+    - Username: admin
+    - Password: alphabrainsdb
+
+
 ## User Requirements
 - Login / logout
 - Transfer tickets between users

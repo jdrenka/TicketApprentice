@@ -25,7 +25,7 @@
     }
 
     #radius-shape-2 {
-      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+      border-radius: 28% 62% 63% 37% / 70% 33% 67% 30%;
       bottom: -60px;
       right: -110px;
       width: 300px;
@@ -43,12 +43,9 @@
   <div class="container px-4 py-5 px-md-5 text-left text-lg-start my-5 fade-in1" style="color: #a1a0a0;">
     <div class="row gx-lg-5 align-items-center mb-5 " >
       <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-        <h1 class="my-3 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%); font-size: 55px;">
-          <span style="color: #ffffff; font-weight: bold"; >Sign in / Sign up</span>
+        <h1 class="my-3 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%); font-size: 88px;">
+          <span style="color: #ffffff; font-weight: 100"; ><strong>Create</strong> an <strong>account</strong></span>
         </h1>
-        <p class="mb-4 opacity-70" style="color: hsl(0, 0%, 100%); font-size: 22px; font-weight: 100">
-          Welcome! To unlock the full experience, enter your account details. If you're new here and haven't created an account yet, we invite you to embark on this journey with us by signing up.
-        </p>
       </div>
 
       <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
@@ -58,6 +55,21 @@
         <div class="card bg-glass" style="border-radius: 20px;">
           <div class="card-body px-4 py-5 px-md-5">
             <form>
+              <!-- First name last name -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example1" class="form-control"  />
+                    <label class="form-label"  for="form3Example1">First name</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="text" id="form3Example2" class="form-control" />
+                    <label class="form-label" for="form3Example2">Last name</label>
+                  </div>
+                </div>
+              </div>
 
               <!-- Email input -->
               <div class="form-outline mb-4">
@@ -71,16 +83,21 @@
                 <label class="form-label" for="form3Example4">Password</label>
               </div>
 
+              <!-- Confirm Password input -->
+              <div class="form-outline mb-4">
+                <input type="password" id="form3Example4" class="form-control" />
+                <label class="form-label" for="form3Example4">Confirm password</label>
+              </div>
+
               <!-- Submit button -->
               <button type="submit" class="btn btn-primary btn-block mb-4">
-                Sign In
+                Sign Up
               </button>
 
-              <!-- Need an account? -->
+              <!-- Already have an account? -->
               <p class="mb-0" style="color: hsl(0, 0%, 69%);">
-                Need an account? <a href="signUp.html" style="color: #ffffff;">Sign up here</a>
+                Already have an account? <a href="signIn.html" style="color: #ffffff;">Log in here</a>
               </p>
-
             </form>
           </div>
         </div>

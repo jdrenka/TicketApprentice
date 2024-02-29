@@ -11,6 +11,7 @@ Our project is an event ticketing software that allows event organizers to easil
 
 
 ## Database GUI Connection 
+ - Server running mysql 8.3.0
 1) Install MySQLWorkbench or similar SQL GUI. 
 2) Create a new connection in the GUI.
 3) Use the following information for the connection (TCP/IP):

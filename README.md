@@ -72,7 +72,7 @@ Server running MySQL 8.3.0
   
 ## Built Using
 - Node.js
-- HTML/CSS
+- HTML/CSS/Bootstrap
 - Javascript
 - MySQL Database 
 - ExpressJS

@@ -265,3 +265,7 @@ body .event-card:hover {
   50% { background-position: 800% 0; }
   100% { background-position: 0 0; }
 }
+.custom-height {
+  height: 50px; /* Adjust the height as needed */
+  padding: 10px; /* Adjust the padding as needed */
+}

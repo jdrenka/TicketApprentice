@@ -229,7 +229,7 @@ body .event-card:hover {
   border: none;
   outline: none;
   color: white;
-  background: #111;
+  background: #2e2e2e;
   cursor: pointer;
   border-radius: 5px;
   font-size: 18px;

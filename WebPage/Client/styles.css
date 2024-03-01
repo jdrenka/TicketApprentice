@@ -99,7 +99,7 @@ body {
 @media (min-width: 1025px) {
   /* Default font size for larger screens */
   .text-area h1 {
-    font-size: 100px;
+    font-size: 5rem;
   }
 }
 
@@ -229,7 +229,7 @@ body .event-card:hover {
   border: none;
   outline: none;
   color: white;
-  background: #111;
+  background: #2e2e2e;
   cursor: pointer;
   border-radius: 5px;
   font-size: 18px;
@@ -264,4 +264,8 @@ body .event-card:hover {
   0% { background-position: 0 0; }
   50% { background-position: 800% 0; }
   100% { background-position: 0 0; }
+}
+.custom-height {
+  height: 50px; /* Adjust the height as needed */
+  padding: 10px; /* Adjust the padding as needed */
 }

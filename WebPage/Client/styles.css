@@ -99,7 +99,7 @@ body {
 @media (min-width: 1025px) {
   /* Default font size for larger screens */
   .text-area h1 {
-    font-size: 100px;
+    font-size: 5rem;
   }
 }
 

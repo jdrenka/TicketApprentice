@@ -66,7 +66,7 @@ body {
   justify-content: space-between; /* Adjusted to create space between text and image */
   align-items: center;
   height: 60vh; 
-  padding: 0 10%; /* Adjusted to create space on the sides */
+  padding: 0 15%; /* Adjusted to create space on the sides */
   color: #ffffff;
 }
 
@@ -77,9 +77,30 @@ body {
 }
 
 .text-area h1 {
-  font-size: 72px;
+  font-size: 100px;
   margin-bottom: 20px;
-  font-weight: 300;
+  font-weight: 200;
+}
+
+@media (max-width: 768px) {
+  /* Adjust font size for smaller screens */
+  .text-area h1 {
+    font-size: 60px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Adjust font size for medium screens */
+  .text-area h1 {
+    font-size: 80px;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Default font size for larger screens */
+  .text-area h1 {
+    font-size: 5rem;
+  }
 }
 
 .text-area h1 strong {
@@ -105,7 +126,7 @@ body {
 }
 
 .get-started:hover {
-  background-color: #1e90ff; /* Darker blue on hover */
+  background-color: #1e90ff;
   color: white;
 }
 
@@ -115,3 +136,136 @@ body {
   margin-left: 20px; /* Adjust the margin as needed */
 }
 
+.fade-in1{
+  opacity: 0;
+  animation: fadeInAnimation 0.5s ease-in-out forwards;
+}
+
+.fade-in2{
+  opacity: 0;
+  animation: fadeInAnimation 1s ease-in-out forwards;
+}
+
+.fade-in3{
+  opacity: 0;
+  animation: fadeInAnimation 1.5s ease-in-out forwards;
+}
+.fade-in4{
+  opacity: 0;
+  animation: fadeInAnimation 2s ease-in-out forwards;
+}
+.fade-in5{
+  opacity: 0;
+  animation: fadeInAnimation 2.5s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+body .event-card {
+  background-color: #201F1F;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+  border-radius: 20px;
+}
+body .event-card:hover {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+.card.event-card .card-body {
+  text-align: left !important;
+}
+.card.event-card .card-body p {
+  font-weight: 200; /* Adjust the font weight (e.g., 300 for thinner) */
+}
+.card.event-card {
+  border: none !important; /* Remove the border */
+}
+.card.event-card .card-img-top {
+  border-radius: 20px; /* Adjust the border-radius to control the roundness */
+  max-height: 150px;
+  object-fit: cover;
+}
+.left-text {
+  text-align: left;
+  color: white;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.center-text {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+}
+.btn-color {
+  background-color: #3B5CFF; 
+  color: #ffffff !important;
+}
+
+.btn-color:hover {
+  background-color: #1e90ff; /* Set a slightly different color on hover if desired */
+}
+#bgVideo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+}
+.button2{
+  position: relative;
+  height: 60px;
+  width: 200px;
+  border: none;
+  outline: none;
+  color: white;
+  background: #2e2e2e;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 18px;
+  z-index: 1;
+}
+.button2:before{
+  position: absolute;
+  content: '';
+  top: -2px;
+  left: -2px;
+  height: calc(100% + 4px);
+  width: calc(100% + 4px);
+  border-radius: 5px;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(5px);
+  background: linear-gradient(45deg, #3B5CFF, #1975b3, #3B5CFF, #395b9b, #3B5CFF, #002bff, #3B5CFF, #0e5272, #3B5CFF);
+  background-size: 800%;
+  transition: opacity .3s ease-in-out; 
+  animation: animate 80s linear infinite;
+}
+.button2:hover:before{
+  opacity: 1;
+}
+.button2:hover:active{
+  background: none;
+}
+.button2:hover:active:before{
+  filter: blur(2px);
+}
+@keyframes animate {
+  0% { background-position: 0 0; }
+  50% { background-position: 800% 0; }
+  100% { background-position: 0 0; }
+}
+.custom-height {
+  height: 50px; /* Adjust the height as needed */
+  padding: 10px; /* Adjust the padding as needed */
+}

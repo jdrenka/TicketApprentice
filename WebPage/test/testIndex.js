@@ -2,7 +2,7 @@
 This is a test file for the index.html file. 
 It checks if the h1 title and button are present in the HTML file.
 
-We can run the test by running the command 'npm test' in the terminal.
+We can run the test by running the command 'npm test' or 'npx mocha test/testIndex.js' in the terminal.
 */
 
 const assert = require('assert');

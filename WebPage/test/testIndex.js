@@ -9,7 +9,7 @@ const assert = require('assert');
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 
-describe('HTML Test', () => {
+describe('index', () => {
     it('should have a heading with the correct text', () => {
         const html = fs.readFileSync('./Client/index.html', 'utf-8');
         const dom = new JSDOM(html);

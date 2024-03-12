@@ -17,7 +17,207 @@
   <!-- Header -->
   <script src="includeheader.js"></script>
   </div>
+
+  <section class="background-radial-gradient overflow-hidden">
+    
+    <style>
+      #radius-shape-1 {
+        height: 220px;
+        width: 220px;
+        top: -60px;
+        left: -130px;
+        background: radial-gradient(#49b5f3, #3B5CFF);
+        overflow: hidden;
+      }
   
+      #radius-shape-2 {
+        border-radius: 28% 62% 63% 37% / 70% 33% 67% 30%;
+        bottom: -60px;
+        right: -110px;
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(#259db3, #3B5CFF);
+        overflow: hidden;
+      }
+  
+      .bg-glass {
+        background-color: hsla(0, 0%, 0%, 0.9) !important;
+        backdrop-filter: saturate(200%) blur(25px);
+      }
+    </style>
+  
+    <div class="container px-4 py-5 px-md-5 text-left text-lg-start my-5 fade-in1" style="color: #a1a0a0;">
+      <div class="row gx-lg-5 align-items-center mb-5 " >
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10"></div>
+        </div>
+  
+        <div class="position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass" style="border-radius: 20px;">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form>
+                <style>
+                  .position-relative {
+                    position: relative;
+                  }
+                
+                  .image-container {
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 10px; /* Adjust the border-radius as needed */
+                    height: 200px; /* Adjust the height as needed */
+                  }
+                
+                  .image-container img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                  }
+                
+                  .btn-image {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    color: #fff;
+                    background-color: rgba(0, 123, 255, 0.8); /* Adjust the background color and opacity as needed */
+                    padding: 10px 15px;
+                    border-radius: 5px; /* Adjust the border-radius as needed */
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                  }
+                
+                  .btn-image:hover {
+                    background-color: rgba(0, 123, 255, 1); /* Adjust the hover background color and opacity as needed */
+                  }
+                </style>
+                
+                <!-- Add image button -->
+                <div class="form-outline mb-4 position-relative">
+                  <div class="image-container">
+                    <img id="previewImage" src="Images/Event.jpeg" alt="Event Image" class="img-fluid">
+                  </div>
+                  <label for="eventImage" class="btn btn-primary btn-image rounded-rectangle">
+                    Add Image
+                    <input type="file" id="eventImage" class="form-control d-none" accept="image/*" onchange="previewFile()">
+                  </label>
+                </div>
+
+                <style>
+                  .image-container {
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 10px; /* Adjust the border-radius as needed */
+                    height: 200px; /* Adjust the height as needed */
+                  }
+
+                  .image-container img {
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    object-fit: cover; /* Center and cover the middle section of the image */
+                    object-position: center center; /* Adjust the object position as needed */
+                  }
+
+                  .btn-image {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    color: #fff;
+                    background-color: black; /* Set the background color to black */
+                    padding: 8px 12px; /* Adjust padding to make the button less wide */
+                    border-radius: 10px; /* Adjust the border-radius as needed for a rounded rectangle */
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                    border: none; /* Remove the border */
+                    outline: none; /* Remove the blue outline */
+                  }
+
+                  .btn-image:hover {
+                    background-color: #131313; /* Adjust the hover background color as needed */
+                  }
+                </style>
+
+                <script>
+                  function previewFile() {
+                    const input = document.getElementById('eventImage');
+                    const imageContainer = document.querySelector('.image-container');
+                    const previewImage = document.getElementById('previewImage');
+
+                    const file = input.files[0];
+                    const reader = new FileReader();
+
+                    reader.onloadend = function () {
+                      previewImage.src = reader.result;
+                      imageContainer.classList.remove('d-none'); // Show the image container
+                    };
+
+                    if (file) {
+                      reader.readAsDataURL(file);
+                    } else {
+                      previewImage.src = "Images/Event.jpeg"; // Default image if no file selected
+                      imageContainer.classList.add('d-none'); // Hide the image container
+                    }
+                  }
+                </script>
+
+                <!-- Event name -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="eventName" class="form-control" />
+                  <label class="form-label" for="eventName">Event Name</label>
+                </div>
+  
+                <!-- Event date -->
+                <div class="form-outline mb-4">
+                  <input type="date" id="eventDate" class="form-control" />
+                  <label class="form-label" for="eventDate">Event Date</label>
+                </div>
+  
+                <!-- Event time -->
+                <div class="form-outline mb-4">
+                  <input type="time" id="eventTime" class="form-control" />
+                  <label class="form-label" for="eventTime">Event Time</label>
+                </div>
+  
+                <!-- Event location -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="eventLocation" class="form-control" />
+                  <label class="form-label" for="eventLocation">Event Location</label>
+                </div>
+  
+                <!-- Event description -->
+                <div class="form-outline mb-4">
+                  <textarea id="eventDescription" class="form-control" rows="4"></textarea>
+                  <label class="form-label" for="eventDescription">Event Description</label>
+                </div>
+  
+                <!-- Ticket price -->
+                <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">$</span>
+                    </div>
+                    <input type="number" step="any" id="ticketPrice" class="form-control" />
+                  </div>
+                  <label class="form-label" for="ticketPrice">Ticket Price</label>
+                </div>
+  
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                  Create Event
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- =================================================================================== -->
   <!-- ============================== PAGE CODE ENDS HERE ============================== -->
   <!-- =================================================================================== -->

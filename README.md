@@ -10,10 +10,9 @@ Our project is an event ticketing software that allows event organizers to easil
 5) Console should prompt "Server running on port 3000". To access webpage, type ```localhost:3000``` into your web browser.
 
 
-## Local docker database connection
-1. Install Docker: [https://www.docker.com/get-started](https://www.docker.com/get-started)
-2. Right click **docker-compose.yml** and type ```docker-compose up -d```
-3. Use MySQL Workbench to connect to the database using the credentials in the Discord server.
+## Database connection
+1. Install MySQL workbench.
+2. Use MySQL Workbench to connect to the database using the credentials in the Discord server.
 
 
 

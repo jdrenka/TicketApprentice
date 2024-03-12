@@ -372,3 +372,15 @@ body .event-page {
   height: 100%;
   object-fit: cover; /* Ensure the image covers the container */
 }
+.image-container {
+  position: relative;
+}
+
+.upload-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+

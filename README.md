@@ -12,7 +12,7 @@ Our project is an event ticketing software that allows event organizers to easil
 
 ## Local docker database connection
 1. Install Docker: [https://www.docker.com/get-started](https://www.docker.com/get-started)
-2. Right click **docker-compose.yml*** and type ```docker-compose up -d```
+2. Right click **docker-compose.yml** and type ```docker-compose up -d```
 3. Use MySQL Workbench to connect to the database using the credentials in the Discord server.
 
 

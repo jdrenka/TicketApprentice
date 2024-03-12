@@ -10,16 +10,11 @@ Our project is an event ticketing software that allows event organizers to easil
 5) Console should prompt "Server running on port 3000". To access webpage, type ```localhost:3000``` into your web browser.
 
 
-## Database GUI Connection 
-Server running MySQL 8.3.0
-1) Install MySQLWorkbench or similar SQL GUI. 
-2) Create a new connection in the GUI.
-3) Use the following information for the connection (TCP/IP):
-   
-    - Hostname: ```alphabrainsdb.c1i22w4g43sf.us-west-1.rds.amazonaws.com```
-    - Port: ```3306```
-    - Username: ```admin```
-    - Password: ```alphabrainsdb```
+## Local docker database connection
+1. Install Docker: [https://www.docker.com/get-started](https://www.docker.com/get-started)
+2. Right click docker-compose.yml and type ```docker-compose up -d```
+3. Use MySQL Workbench to connect to the database using the credentials in the Discord server.
+
 
 
 ## User Requirements

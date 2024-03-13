@@ -21,9 +21,24 @@ app.use(session({  //Session Config
 // Middleware to serve static files
 app.use(express.static(path.join(__dirname, '../client')));
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
 // Route to serve index.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+app.get('/browse-events', async (req, res) => {
+  try {
+    // Use the pool to execute the query with async/await
+    const [events] = await pool.query('SELECT * FROM eventInfo');
+    res.render('browseEvents', { pageTitle: 'Browse Events', events }); // 'events' contains rows returned by the query
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred');
+  }
+
 });
 
 //Posts

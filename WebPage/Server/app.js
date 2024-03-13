@@ -1,7 +1,7 @@
 //Requires
 const express = require('express');
 const path = require('path');
-const pool = require('./database'); // Import the MySQL connection pool
+const pool = require('./database');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2/promise');
 const session = require('express-session');
@@ -18,6 +18,7 @@ app.use(session({  //Session Config
   saveUninitialized: true,
   cookie: { secure: !true } // Set to true if using https
 }));
+
 // Middleware to serve static files
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -29,6 +30,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+// Route to browse events
 app.get('/browse-events', async (req, res) => {
   try {
     // Use the pool to execute the query with async/await

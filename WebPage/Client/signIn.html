@@ -63,17 +63,19 @@
 
         <div class="card bg-glass" style="border-radius: 20px;">
           <div class="card-body px-4 py-5 px-md-5">
-            <form>
 
-              <!-- Email input -->
+             <!-- Login Form -->
+            <form action="/login" method="POST">
+
+              <!-- Username/Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" />
-                <label class="form-label" for="form3Example3">Email address</label>
+                <input name="usernameOrEmail" id="form3Example3" class="form-control" required />
+                <label class="form-label" for="form3Example3">Username / Email address</label>
               </div>
 
               <!-- Password input -->
               <div class="form-outline mb-4">
-                <input type="password" id="form3Example4" class="form-control" />
+                <input type="password" name="password" id="form3Example4" class="form-control" required />
                 <label class="form-label" for="form3Example4">Password</label>
               </div>
 

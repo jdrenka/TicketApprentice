@@ -1,9 +1,23 @@
+//Requires
 const express = require('express');
 const path = require('path');
 const pool = require('./database'); // Import the MySQL connection pool
+const bcrypt = require('bcrypt');
+const mysql = require('mysql2/promise');
+const session = require('express-session');
+
 const app = express();
+const saltRounds = 10; //For encryption
 const port = process.env.PORT || 3000;
 
+app.use(express.urlencoded({ extended: true }));
+
+app.use(session({  //Session Config
+  secret: 'f595f2a9d5c84f2c7',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: !true } // Set to true if using https
+}));
 // Middleware to serve static files
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -12,30 +26,54 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
-//Example of how we can query the DB through URL routes. This route returns JSON of all user data.  
-app.get('/data', (req, res) => {
-    pool.getConnection((err, connection) => {
-      if (err) {
-        console.error('Error connecting to MySQL: ', err);
-        res.status(500).send('Error connecting to MySQL');
-        return;
+//Posts
+app.post('/create-account', async (req, res) => {
+  const { username, password, email, organizer } = req.body;
+  try {
+      const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+      const [result] = await pool.query(
+          'INSERT INTO person (username, password, email, organizer) VALUES (?, ?, ?, ?)',
+          [username, hashedPassword, email, organizer === 'on']
+      );
+      res.send('Account created successfully');
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Error creating account');
+  }
+});
+
+app.post('/login', async (req, res) => {
+  const { usernameOrEmail, password } = req.body;
+  try {
+      const [users] = await pool.query('SELECT * FROM person WHERE username = ? OR email = ?', [usernameOrEmail, usernameOrEmail]);
+      if (users.length > 0) {
+          const match = await bcrypt.compare(password, users[0].password);
+          if (match) {
+              req.session.loggedin = true;
+              req.session.username = users[0].username;
+              req.session.organizer = users[0].organizer;
+              res.redirect('/home');
+          } else {
+              res.send('Incorrect username and/or password!');
+          }
+      } else {
+          res.send('Incorrect username and/or password!');
       }
-  
-      const query = 'SELECT * FROM users';
-  
-      connection.query(query, (error, results) => {
-        connection.release();
-  
-        if (error) {
-          console.error('Error executing query: ', error);
-          res.status(500).send('Error executing query');
-          return;
-        }
-  
-        res.json(results);
-      });
-    });
-  });
+  } catch (err) {
+      console.error(err);
+      res.status(500).send('Error logging in');
+  }
+});
+
+//Gets 
+
+app.get('/home', (req, res) => {
+  if (req.session.loggedin) {
+      res.send(`Welcome back, ${req.session.username}! Organizer: ${req.session.organizer}`);
+  } else {
+      res.send('Please login to view this page!');
+  }
+});
 
 // Start the server
 app.listen(port, () => {

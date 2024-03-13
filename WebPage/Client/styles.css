@@ -19,7 +19,7 @@ body {
   text-align: center;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 15px;
   line-height: 25px;
   border-radius: 4px;
   font-weight: 600;
@@ -266,6 +266,120 @@ body .event-card:hover {
   100% { background-position: 0 0; }
 }
 .custom-height {
-  height: 50px; /* Adjust the height as needed */
+  height: 20px; /* Adjust the height as needed */
   padding: 10px; /* Adjust the padding as needed */
+}
+.card-img-top {
+  max-height: 400px; /* Adjust the height as needed */
+}
+
+body .event-page {
+  background-color: #201F1F;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+  border-radius: 20px;
+}
+
+
+.card.event-page .card-body {
+  text-align: left !important;
+}
+
+.card.event-page .card-body p {
+  font-weight: 200; /* Adjust the font weight (e.g., 300 for thinner) */
+  font-size: 18px;
+}
+
+.card.event-page {
+  border: none !important; /* Remove the border */
+}
+
+.card.event-page .card-img-top {
+  border-radius: 20px; /* Adjust the border-radius to control the roundness */
+  max-height: 400px; /* Increased the max-height for a slightly larger image */
+  object-fit: cover;
+}
+
+.card.event-page .card-title {
+  font-size: 70px; /* Adjust the font size for a larger title */
+}
+
+.card.buy-ticket {
+  background-color: #201F1F;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+  border-radius: 20px;
+}
+
+.card.buy-ticket:hover {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card.buy-ticket .card-body {
+  text-align: center !important;
+}
+
+.card.buy-ticket .btn {
+  background-color: #3B5CFF;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.card.buy-ticket {
+  background-color: #201F1F;
+  color: #ffffff;
+  transition: box-shadow 0.3s ease;
+  border-radius: 20px;
+}
+
+.card.buy-ticket:hover {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+}
+
+.card.buy-ticket .card-body {
+  text-align: center !important;
+}
+
+.card.buy-ticket .btn {
+  background-color: #3B5CFF;
+  color: #ffffff;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card.buy-ticket .btn:hover {
+  background-color: #1e90ff;
+}
+/* Adding a margin to the event title */
+.event-title {
+  margin-top: 30px; /* Adjust the margin as needed */
+}
+.square-image-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-top: 100%; /* Set a fixed aspect ratio for a square container */
+  margin-top: 68px; /* Add margin from the top */
+}
+
+.square-image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the image covers the container */
+}
+.image-container {
+  position: relative;
+}
+
+.upload-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }

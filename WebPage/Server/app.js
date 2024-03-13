@@ -30,6 +30,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/index.html'));
 });
 
+// ---------------- Code routes below this line ----------------
+
 // Route to browse events
 app.get('/browse-events', async (req, res) => {
   try {
@@ -40,10 +42,9 @@ app.get('/browse-events', async (req, res) => {
     console.error(error);
     res.status(500).send('An error occurred');
   }
-
 });
 
-//Posts
+// Route to create account
 app.post('/create-account', async (req, res) => {
   const { username, password, email, organizer } = req.body;
   try {
@@ -59,6 +60,7 @@ app.post('/create-account', async (req, res) => {
   }
 });
 
+// Route to login
 app.post('/login', async (req, res) => {
   const { usernameOrEmail, password } = req.body;
   try {
@@ -82,8 +84,8 @@ app.post('/login', async (req, res) => {
   }
 });
 
-//Gets 
 
+// Route to home
 app.get('/home', (req, res) => {
   if (req.session.loggedin) {
       res.send(`Welcome back, ${req.session.username}! Organizer: ${req.session.organizer}`);
@@ -91,6 +93,12 @@ app.get('/home', (req, res) => {
       res.send('Please login to view this page!');
   }
 });
+
+
+
+
+
+// ---------------- Code routes above this line ----------------
 
 // Start the server
 app.listen(port, () => {

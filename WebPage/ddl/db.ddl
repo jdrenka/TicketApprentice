@@ -14,10 +14,11 @@ DROP TABLE IF EXISTS person;
 -- Create table statements
 
 CREATE TABLE person (
-    userID INTEGER,
+    userID INTEGER AUTO_INCREMENT,
     username VARCHAR(50),
-    password VARCHAR(50),
+    password VARCHAR(255),
     email VARCHAR(255),
+    organizer BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (userID)
 );
 

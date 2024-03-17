@@ -11,18 +11,18 @@ body {
 .header {
   overflow: hidden;
   padding: 20px 5%;
-  height: 75px;
+  height: 80px;
+  background-color: rgba(0, 0, 0, 0.8);
   
 }
 
 .header a {
   color: rgb(255, 255, 255);
   text-align: center;
-  padding: 1vw;
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-  margin-right: 0.5vw;
+  padding: 1rem;
+  margin-right: 0.5rem;
   text-decoration: none;
-  font-size: 1vw;
+  font-size: 1rem;
   line-height: 25px;
   border-radius: 4px;
   font-weight: 600;
@@ -34,14 +34,15 @@ body {
 }
   
 .header a.logo {
-  font-size: 2vw;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
+  margin-top: 1.5rem;
 }
 
 .header-right {
-  margin-top: 0.5vw;
-  width: 70vw; 
+  margin-top: 0.5rem;
+  width: 60rem; 
   float: right;
 }
   
@@ -60,10 +61,10 @@ body {
 .header .signin-register {
   background-color: #3B5CFF;
   color: white;
-  padding: 1vw 2vw; 
-  width: 12vw;
-  font-size: 1vw;
-  margin-left: 1vw;
+  padding: 1rem 2rem; 
+  width: 12rem;
+  font-size: 1rem;
+  margin-left: 1rem;
   border-radius: 20px;
   text-decoration: none; /* Remove underline for links */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -212,25 +213,10 @@ body .event-card:hover {
   font-size: 30px;
 }
 
-#userInfo{
-  display: flex; /* Establishes the div as a Flexbox container */
-  justify-content: center; /* Horizontally centers the flex items (the <a> elements) */
-  align-items: center; /* Vertically centers the flex items within the .userInfo container */
-  flex-direction: row; /* Aligns the <a> elements side by side in a row (this is the default value and can be omitted) */
-  text-align: center;
-  width: 20vw;
-  height: 3vw;
-  margin-left: 20px;  
-  padding: 1vw;
-  border: 3px solid black;
-  border-radius: 25px;
-  background-color: #3b5af5;
-  float:right;
-  
-}
+
 
 #userInfo *{
-  font-size: 1vw;
+  font-size: 1rem;
 }
 
 .center-text {

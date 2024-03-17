@@ -10,28 +10,38 @@ body {
 
 .header {
   overflow: hidden;
-  padding: 20px 10%;
-}
+  padding: 20px 5%;
+  height: 75px;
   
+}
+
 .header a {
-  float: left;
   color: rgb(255, 255, 255);
   text-align: center;
-  padding: 12px;
+  padding: 1vw;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  margin-right: 0.5vw;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 1vw;
   line-height: 25px;
   border-radius: 4px;
   font-weight: 600;
 }
+
+.header a:hover {
+  transform: scale(1.03); /* Slightly larger scale */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
   
 .header a.logo {
-  font-size: 25px;
+  font-size: 2vw;
   font-weight: bold;
   color: #ffffff;
 }
-  
+
 .header-right {
+  margin-top: 0.5vw;
+  width: 70vw; 
   float: right;
 }
   
@@ -50,7 +60,10 @@ body {
 .header .signin-register {
   background-color: #3B5CFF;
   color: white;
-  padding: 10px 20px;
+  padding: 1vw 2vw; 
+  width: 12vw;
+  font-size: 1vw;
+  margin-left: 1vw;
   border-radius: 20px;
   text-decoration: none; /* Remove underline for links */
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -81,6 +94,8 @@ body {
   margin-bottom: 20px;
   font-weight: 200;
 }
+
+
 
 @media (max-width: 768px) {
   /* Adjust font size for smaller screens */
@@ -195,6 +210,27 @@ body .event-card:hover {
   color: white;
   font-weight: 400;
   font-size: 30px;
+}
+
+#userInfo{
+  display: flex; /* Establishes the div as a Flexbox container */
+  justify-content: center; /* Horizontally centers the flex items (the <a> elements) */
+  align-items: center; /* Vertically centers the flex items within the .userInfo container */
+  flex-direction: row; /* Aligns the <a> elements side by side in a row (this is the default value and can be omitted) */
+  text-align: center;
+  width: 20vw;
+  height: 3vw;
+  margin-left: 20px;  
+  padding: 1vw;
+  border: 3px solid black;
+  border-radius: 25px;
+  background-color: #3b5af5;
+  float:right;
+  
+}
+
+#userInfo *{
+  font-size: 1vw;
 }
 
 .center-text {

@@ -24,21 +24,123 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Route to serve index.html
+//Gets 
+
+// Route to serve index.ejs 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/index.html'));
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('index.ejs', { 
+    pageTitle: 'Index', 
+    loggedIn,
+    userID,
+    username,
+    organizer  
+   }); 
+});
+
+// Alt Route to serve index.ejs 
+app.get('/index', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('index.ejs', { 
+    pageTitle: 'Index', 
+    loggedIn,
+    userID,
+    username,
+    organizer  
+   }); 
+});
+
+
+app.get('/logout', (req, res) => {
+  // Destroy the user's session
+  req.session.destroy(err => {
+    if (err) {
+      // Handle the error case
+      console.log(err);
+      res.status(500).send('Could not log out, please try again');
+    } else {
+      // Redirect to login page after logout
+      res.redirect('/signIn.html');
+    }
+  });
 });
 
 app.get('/browse-events', async (req, res) => {
   try {
+
+  
+    const loggedIn = req.session.loggedin;
+    const userID = req.session.userID; 
+    const username = req.session.username;
+    const organizer = req.session.organizer;
+
     // Use the pool to execute the query with async/await
     const [events] = await pool.query('SELECT * FROM eventInfo');
-    res.render('browseEvents', { pageTitle: 'Browse Events', events }); // 'events' contains rows returned by the query
+    
+    res.render('browseEvents', { 
+      pageTitle: 'Browse Events', 
+      events, // 'events' contains rows returned by the query
+      loggedIn,
+      userID,
+      username,
+      organizer
+     }); 
+    
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');
   }
 
+});
+
+app.get('/contactUs', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('contactUs.ejs', { 
+    pageTitle: 'Contact Us', 
+    loggedIn,
+    userID,
+    username,
+    organizer
+   }); 
+});
+
+app.get('/createEvents', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('createEvents.ejs', { 
+    pageTitle: 'Create Events', 
+    loggedIn,
+    userID,
+    username,
+    organizer  
+   }); 
+  
+});
+
+app.get('/contactOrganizer', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('contactOrganizer.ejs', { 
+    pageTitle: 'Contact Organizer', 
+    loggedIn,
+    userID,
+    username,
+    organizer  
+   }); 
+  
 });
 
 //Posts
@@ -50,7 +152,7 @@ app.post('/create-account', async (req, res) => {
           'INSERT INTO person (username, password, email, organizer) VALUES (?, ?, ?, ?)',
           [username, hashedPassword, email, organizer === 'on']
       );
-      res.send('Account created successfully');
+      res.redirect('signIn.html');
   } catch (err) {
       console.error(err);
       res.status(500).send('Error creating account');
@@ -65,9 +167,10 @@ app.post('/login', async (req, res) => {
           const match = await bcrypt.compare(password, users[0].password);
           if (match) {
               req.session.loggedin = true;
+              req.session.userID = users[0].userID;
               req.session.username = users[0].username;
               req.session.organizer = users[0].organizer;
-              res.redirect('/home');
+              res.redirect('/browse-events');
           } else {
               res.send('Incorrect username and/or password!');
           }
@@ -80,15 +183,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
-//Gets 
 
-app.get('/home', (req, res) => {
-  if (req.session.loggedin) {
-      res.send(`Welcome back, ${req.session.username}! Organizer: ${req.session.organizer}`);
-  } else {
-      res.send('Please login to view this page!');
-  }
-});
 
 // Start the server
 app.listen(port, () => {

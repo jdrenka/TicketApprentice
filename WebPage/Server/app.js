@@ -12,56 +12,53 @@ const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({  //Session Config
+app.use(session({
   secret: 'f595f2a9d5c84f2c7',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: !true } // Set to true if using https
 }));
+
 // Middleware to serve static files
 app.use(express.static(path.join(__dirname, '../client')));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-//Gets 
+
+// =============================================================================================================================
+// ========================================================= ROUTES ============================================================
+// =============================================================================================================================
 
 // Route to serve index.ejs 
-app.get('/', (req, res) => {
+app.get(['/', '/index'], (req, res) => {
   const loggedIn = req.session.loggedin;
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
-  res.render('index.ejs', { 
-    pageTitle: 'Index', 
-    loggedIn,
-    userID,
-    username,
-    organizer  
-   }); 
-});
-
-// Alt Route to serve index.ejs 
-app.get('/index', (req, res) => {
-  const loggedIn = req.session.loggedin;
-  const userID = req.session.userID; 
-  const username = req.session.username;
-  const organizer = req.session.organizer;
-  res.render('index.ejs', { 
-    pageTitle: 'Index', 
-    loggedIn,
-    userID,
-    username,
-    organizer  
-   }); 
+  
+  // Check if the user is logged in
+  if (loggedIn) {                             
+    // Redirect to browse-events if logged in
+    res.redirect('/browse-events');
+  } else {
+    // Render index.ejs if not logged in
+    res.render('index.ejs', { 
+      pageTitle: 'Index', 
+      loggedIn,
+      userID,
+      username,
+      organizer  
+    });
+  }
 });
 
 
+// Route to serve signIn.ejs
 app.get('/logout', (req, res) => {
   // Destroy the user's session
   req.session.destroy(err => {
     if (err) {
-      // Handle the error case
       console.log(err);
       res.status(500).send('Could not log out, please try again');
     } else {
@@ -71,16 +68,14 @@ app.get('/logout', (req, res) => {
   });
 });
 
+// Route to serve browseEvents.ejs
 app.get('/browse-events', async (req, res) => {
   try {
-
-  
     const loggedIn = req.session.loggedin;
     const userID = req.session.userID; 
     const username = req.session.username;
     const organizer = req.session.organizer;
 
-    // Use the pool to execute the query with async/await
     const [events] = await pool.query('SELECT * FROM eventInfo');
     
     res.render('browseEvents', { 
@@ -99,6 +94,7 @@ app.get('/browse-events', async (req, res) => {
 
 });
 
+// Route to serve contactUs.ejs
 app.get('/contactUs', (req, res) => {
   const loggedIn = req.session.loggedin;
   const userID = req.session.userID; 
@@ -113,6 +109,7 @@ app.get('/contactUs', (req, res) => {
    }); 
 });
 
+// Route to serve createEvents.ejs
 app.get('/createEvents', (req, res) => {
   const loggedIn = req.session.loggedin;
   const userID = req.session.userID; 
@@ -128,6 +125,7 @@ app.get('/createEvents', (req, res) => {
   
 });
 
+// Route to serve contactOrganizer.ejs
 app.get('/contactOrganizer', (req, res) => {
   const loggedIn = req.session.loggedin;
   const userID = req.session.userID; 
@@ -143,7 +141,7 @@ app.get('/contactOrganizer', (req, res) => {
   
 });
 
-//Posts
+// Route to create account
 app.post('/create-account', async (req, res) => {
   const { username, password, email, organizer } = req.body;
   try {
@@ -159,6 +157,7 @@ app.post('/create-account', async (req, res) => {
   }
 });
 
+// Route to login
 app.post('/login', async (req, res) => {
   const { usernameOrEmail, password } = req.body;
   try {
@@ -184,6 +183,9 @@ app.post('/login', async (req, res) => {
 });
 
 
+// =============================================================================================================================
+// ====================================================== ROUTES ABOVE =========================================================
+// =============================================================================================================================
 
 // Start the server
 app.listen(port, () => {

@@ -32,56 +32,32 @@
   </div>
 </div>
 
-<!-- Categories tab - we will replace the placeholders with categories stored in our SQL database. -->
-  <div class="container mt-5 fade-in1">
-    <div class="left-text">Browse by Category</div>
-    <br>
-    <div class="row justify-content-center">
-      <!-- Category 1 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Category</h5>
-            <a href="#" class="stretched-link"></a>
-          </div>
-        </div>
-      </div>
 
-      <!-- Category 2 -->
+<!-- Display the categories in database -->
+<div class="container mt-5 fade-in1">
+  <div class="left-text">Browse by Category</div>
+  <br>
+  <div class="row justify-content-center">
+    <!-- Category -->
+    <% categories.slice(0, 4).forEach(category => { %>
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
+          <% if (category.categoryCoverPhoto != null ){ %>
+            <img src="<%= category.categoryCoverPhoto %>" class="card-img-top" alt="...">
+          <% } else { %>
+            <!-- Placeholder -->
+            <img src="Images/Event.jpeg" class="card-img-top" alt="Placeholder Image">
+          <% } %>
           <div class="card-body">
-            <h5 class="card-title">Category</h5>
+            <h5 class="card-title"><%= category.categoryName %></h5>
             <a href="#" class="stretched-link"></a>
           </div>
         </div>
       </div>
-
-      <!-- Category 3 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Category</h5>
-            <a href="#" class="stretched-link"></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 4 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Category</h5>
-            <a href="#" class="stretched-link"></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% }); %>
   </div>
+
+
 
 <!-- Featured events section -->
 <div class="container mt-5 fade-in1">
@@ -91,10 +67,10 @@
     <% events.forEach(event => { %>
       <div class="col-md-4 mb-4">
         <div class="card event-card">
-          <% if (event.imageUrl) { %>
+          <% if (event.coverPhoto != null ){ %>
             <img src="<%= event.coverPhoto %>" class="card-img-top" alt="...">
           <% } else { %>
-            <!-- Replace 'placeholder.jpg' with the path to your local placeholder image -->
+            <!-- Placeholder -->
             <img src="Images/Event.jpeg" class="card-img-top" alt="Placeholder Image">
           <% } %>
           <div class="card-body">
@@ -117,6 +93,8 @@
     
   </div>
 </div>
+
+
   <script> 
   document.getElementById('logoutButton').addEventListener('click', function() {
   // Initiate a fetch request to the /logout endpoint
@@ -128,6 +106,8 @@
     .catch(error => console.error('Logout failed:', error));
 });
   </script>
+
+
   <!-- Footer -->
   <script src="includefooter.js"></script>
     

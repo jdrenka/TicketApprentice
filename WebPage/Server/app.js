@@ -77,21 +77,22 @@ app.get('/browse-events', async (req, res) => {
     const organizer = req.session.organizer;
 
     const [events] = await pool.query('SELECT * FROM eventInfo');
+    const [categories] = await pool.query('SELECT * FROM category');
     
     res.render('browseEvents', { 
       pageTitle: 'Browse Events', 
-      events, // 'events' contains rows returned by the query
+      events,
       loggedIn,
       userID,
       username,
-      organizer
+      organizer,
+      categories
      }); 
     
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');
   }
-
 });
 
 // Route to serve contactUs.ejs

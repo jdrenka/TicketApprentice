@@ -188,9 +188,10 @@ body .event-card {
   color: #ffffff;
   transition: box-shadow 0.3s ease;
   border-radius: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 body .event-card:hover {
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.85);
 }
 .card.event-card .card-body {
   text-align: left !important;

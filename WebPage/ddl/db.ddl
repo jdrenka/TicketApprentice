@@ -23,7 +23,7 @@ CREATE TABLE person (
 );
 
 CREATE TABLE eventInfo (
-    eventID INTEGER,
+    eventID INTEGER AUTO_INCREMENT,
     eventTitle VARCHAR(255),
     eventDate DATE,
     address VARCHAR(255),
@@ -75,3 +75,12 @@ CREATE TABLE eventOrganizer (
 );
 
 -- Add insert statements below here
+
+INSERT INTO eventInfo (eventTitle, eventDate, address, coverPhoto, description, ticketPrice, numTickets)
+VALUES 
+    ('Concert 2024', '2024-05-15', '123 Main St', NULL, 'A fantastic musical event', 25.00, 500),
+    ('Festival Extravaganza', '2024-06-20', '456 Oak St', NULL, 'Celebrate with music and food', 30.00, 800),
+    ('Comedy Night', '2024-07-10', '789 Maple Ave', NULL, 'Laugh out loud with top comedians', 20.00, 300),
+    ('Art Exhibition', '2024-08-05', '101 Pine Ln', NULL, 'Explore creativity through art', 15.00, 200),
+    ('Tech Conference', '2024-09-15', '202 Tech Blvd', NULL, 'Stay updated with the latest tech trends', 50.00, 400),
+    ('Fitness Challenge', '2024-10-08', '303 Wellness St', NULL, 'Get active and fit together', 10.00, 100);

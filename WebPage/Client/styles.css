@@ -213,7 +213,13 @@ body .event-card:hover {
   font-size: 30px;
 }
 
-
+.small-text {
+  font-size: 20px; 
+  line-height: 1;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+}
 
 #userInfo *{
   font-size: 1rem;
@@ -404,4 +410,8 @@ body .event-page {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+.browse-events-heading {
+  font-size: 48px; /* Adjust the font size of "Browse Events" */
+  font-weight: bold; /* Optionally, adjust the font weight if needed */
 }

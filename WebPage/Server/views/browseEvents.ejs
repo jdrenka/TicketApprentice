@@ -18,30 +18,25 @@
   <%- include('partials/header.ejs'); %>
  
 <!-- Search bar -->
-<div class="container fade-in1">
-  <div class="center-text">Browse Events</div>
-  <div class="row height d-flex justify-content-center align-items-center">
-    <div class="col-md-6">
-      <form class="form d-flex justify-content-between align-items-center">
-        <div class="input-group">
-          <i class="fa fa-search fa-lg"></i>
-          <input type="text" class="form-control form-input rounded custom-height-lg" placeholder="Search events">
-          <span class="left-pan"><i class="fa fa-microphone fa-lg"></i></span>
-        </div>
-      </form>
-    </div>
+<div class="container-fluid fade-in1 d-flex justify-content-center align-items-center" style="background-image: url('Images/browseEvents.jpg'); background-size: cover; background-position: center; height: 50vh;">
+  <div class="center-text" style="line-height: 0;">
+    <h1 class="browse-events-heading">Browse Events</h1>
+    <a class="small-text">What kind of event are you looking for?</a>
+    <form class="form d-flex justify-content-between align-items-center" style="width: 100%;">
+      <div class="input-group" style="width: 100%;">
+        <i class="fa fa-search fa-lg"></i>
+        <input type="text" class="form-control form-input rounded custom-height-lg" placeholder="Search events" style="background: white; width: 600px; margin-top: 20px;"> <!-- Adjusted width directly -->
+        <span class="left-pan"><i class="fa fa-microphone fa-lg"></i></span>
+      </div>
+    </form>
   </div>
 </div>
 
-
-
-
-
-
 <!-- Categories tab - we will replace the placeholders with categories stored in our SQL database. -->
   <div class="container mt-5 fade-in1">
+    <div class="left-text">Browse by Category</div>
+    <br>
     <div class="row justify-content-center">
-
       <!-- Category 1 -->
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">

@@ -15,8 +15,8 @@
 
 
   <!-- Header -->
-  <script src="includeheader.js"></script>
-
+  <%- include('partials/header.ejs'); %>
+ 
 <!-- Search bar -->
 <div class="container fade-in1">
   <div class="center-text">Browse Events</div>
@@ -105,6 +105,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= event.eventTitle %></h5>
             <p class="card-text"><%= event.description %></p>
+            <p class="card-text"><strong>$<%= event.ticketPrice %></p></strong></p>
             <a href="<%= '/event/' + event.id %>" class="stretched-link"></a>
           </div>
         </div>
@@ -114,7 +115,17 @@
     
   </div>
 </div>
-
+  <script> 
+  document.getElementById('logoutButton').addEventListener('click', function() {
+  // Initiate a fetch request to the /logout endpoint
+  fetch('/logout', { method: 'GET' })
+    .then(() => {
+      // Redirect to the login page, or do nothing if the server handles the redirect
+      // window.location.href = '/signin.html'; // Uncomment if the client handles the redirect
+    })
+    .catch(error => console.error('Logout failed:', error));
+});
+  </script>
   <!-- Footer -->
   <script src="includefooter.js"></script>
     

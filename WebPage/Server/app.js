@@ -143,17 +143,20 @@ app.get('/contactOrganizer', (req, res) => {
 });
 
 // Route to serve contactOrganizer.ejs
-app.get('/event', (req, res) => {
+app.get('/event', async (req, res) => {
   const loggedIn = req.session.loggedin;
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const eventId = req.query.eventId;
+  const eventDetails = await getEventDetailsById(eventId);
   res.render('event.ejs', { 
     pageTitle: 'Event', 
     loggedIn,
     userID,
     username,
-    organizer  
+    organizer,
+    event: eventDetails
    }); 
   
 });
@@ -199,6 +202,18 @@ app.post('/login', async (req, res) => {
   }
 });
 
+//Functions
+
+async function getEventDetailsById(eventId) {
+  try {
+    const [results, fields] = await pool.query('SELECT * FROM eventInfo WHERE eventID = ?', [eventId]);
+   
+    return results[0]; // Directly return the first result
+  } catch (error) {
+    console.error('Error fetching event details:', error);
+    throw error; // Rethrow or handle error as needed
+  }
+}
 
 // =============================================================================================================================
 // ====================================================== ROUTES ABOVE =========================================================

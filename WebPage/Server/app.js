@@ -142,6 +142,22 @@ app.get('/contactOrganizer', (req, res) => {
   
 });
 
+// Route to serve contactOrganizer.ejs
+app.get('/event', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('event.ejs', { 
+    pageTitle: 'Event', 
+    loggedIn,
+    userID,
+    username,
+    organizer  
+   }); 
+  
+});
+
 // Route to create account
 app.post('/create-account', async (req, res) => {
   const { username, password, email, organizer } = req.body;

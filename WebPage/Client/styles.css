@@ -416,3 +416,6 @@ body .event-page {
   font-size: 48px; /* Adjust the font size of "Browse Events" */
   font-weight: bold; /* Optionally, adjust the font weight if needed */
 }
+.form-group label {
+  color: white;
+}

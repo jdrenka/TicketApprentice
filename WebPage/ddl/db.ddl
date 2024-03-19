@@ -16,9 +16,16 @@ DROP TABLE IF EXISTS category;
 
 CREATE TABLE person (
     userID INTEGER AUTO_INCREMENT,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
     username VARCHAR(50),
     password VARCHAR(255),
     email VARCHAR(255),
+    address VARCHAR(255),
+    city VARCHAR(255),
+    country VARCHAR(255),
+    zipCode VARCHAR(255),
+    province VARCHAR(255),
     organizer BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY (userID)
 );

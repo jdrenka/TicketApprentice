@@ -199,6 +199,21 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Route to serve profile.ejs
+app.get('/profile', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('profile.ejs', { 
+    pageTitle: 'Profile', 
+    loggedIn,
+    userID,
+    username,
+    organizer  
+   }); 
+});
+
 
 // =============================================================================================================================
 // ====================================================== ROUTES ABOVE =========================================================

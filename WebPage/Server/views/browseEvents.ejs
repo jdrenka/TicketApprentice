@@ -18,75 +18,46 @@
   <%- include('partials/header.ejs'); %>
  
 <!-- Search bar -->
-<div class="container fade-in1">
-  <div class="center-text">Browse Events</div>
-  <div class="row height d-flex justify-content-center align-items-center">
-    <div class="col-md-6">
-      <form class="form d-flex justify-content-between align-items-center">
-        <div class="input-group">
-          <i class="fa fa-search fa-lg"></i>
-          <input type="text" class="form-control form-input rounded custom-height-lg" placeholder="Search events">
-          <span class="left-pan"><i class="fa fa-microphone fa-lg"></i></span>
-        </div>
-      </form>
-    </div>
+<div class="container-fluid fade-in1 d-flex justify-content-center align-items-center" style="background-image: url('Images/browseEvents.jpg'); background-size: cover; background-position: center; height: 50vh;">
+  <div class="center-text" style="line-height: 0;">
+    <h1 class="browse-events-heading">Browse Events</h1>
+    <a class="small-text">What kind of event are you looking for?</a>
+    <form class="form d-flex justify-content-between align-items-center" style="width: 100%;">
+      <div class="input-group" style="width: 100%;">
+        <i class="fa fa-search fa-lg"></i>
+        <input type="text" class="form-control form-input rounded custom-height-lg" placeholder="Search events" style="background: white; width: 600px; margin-top: 20px;"> <!-- Adjusted width directly -->
+        <span class="left-pan"><i class="fa fa-microphone fa-lg"></i></span>
+      </div>
+    </form>
   </div>
 </div>
 
 
-
-
-
-
-<!-- Categories tab - we will replace the placeholders with categories stored in our SQL database. -->
-  <div class="container mt-5 fade-in1">
-    <div class="row justify-content-center">
-
-      <!-- Category 1 -->
+<!-- Display the categories in database -->
+<div class="container mt-5 fade-in1">
+  <div class="left-text">Browse by Category</div>
+  <br>
+  <div class="row justify-content-center">
+    <!-- Category -->
+    <% categories.slice(0, 4).forEach(category => { %>
       <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
         <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
+          <% if (category.categoryCoverPhoto != null ){ %>
+            <img src="<%= category.categoryCoverPhoto %>" class="card-img-top" alt="...">
+          <% } else { %>
+            <!-- Placeholder -->
+            <img src="Images/Event.jpeg" class="card-img-top" alt="Placeholder Image">
+          <% } %>
           <div class="card-body">
-            <h5 class="card-title">Category</h5>
+            <h5 class="card-title"><%= category.categoryName %></h5>
             <a href="#" class="stretched-link"></a>
           </div>
         </div>
       </div>
-
-      <!-- Category 2 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Category</h5>
-            <a href="#" class="stretched-link"></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 3 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Category</h5>
-            <a href="#" class="stretched-link"></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Category 4 -->
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-        <div class="card event-card">
-          <img src="Images/Event.jpeg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Category</h5>
-            <a href="#" class="stretched-link"></a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% }); %>
   </div>
+
+
 
 <!-- Featured events section -->
 <div class="container mt-5 fade-in1">
@@ -96,25 +67,34 @@
     <% events.forEach(event => { %>
       <div class="col-md-4 mb-4">
         <div class="card event-card">
-          <% if (event.imageUrl) { %>
+          <% if (event.coverPhoto != null ){ %>
             <img src="<%= event.coverPhoto %>" class="card-img-top" alt="...">
           <% } else { %>
-            <!-- Replace 'placeholder.jpg' with the path to your local placeholder image -->
+            <!-- Placeholder -->
             <img src="Images/Event.jpeg" class="card-img-top" alt="Placeholder Image">
           <% } %>
           <div class="card-body">
             <h5 class="card-title"><%= event.eventTitle %></h5>
-            <p class="card-text"><%= event.description %></p>
+            <% if (event.description.length > 100) { %>
+              <!-- Truncate description to 100 characters if it exceeds the limit -->
+              <p class="card-text"><%= event.description.substring(0, 75) %>...</p>
+            <% } else { %>
+              <!-- Otherwise, display the full description -->
+              <p class="card-text"><%= event.description %></p>
+            <% } %>
             <p class="card-text"><strong>$<%= event.ticketPrice %></p></strong></p>
             <a href="<%= '/event/' + event.id %>" class="stretched-link"></a>
           </div>
         </div>
       </div>
     <% }); %>
+
     
     
   </div>
 </div>
+
+
   <script> 
   document.getElementById('logoutButton').addEventListener('click', function() {
   // Initiate a fetch request to the /logout endpoint
@@ -126,6 +106,8 @@
     .catch(error => console.error('Logout failed:', error));
 });
   </script>
+
+
   <!-- Footer -->
   <script src="includefooter.js"></script>
     

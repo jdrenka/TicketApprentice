@@ -32,14 +32,11 @@
       <div class="col-md-6">
         <div class="card-body">
           <!-- Adding a class to the event title for styling -->
-          <h5 class="card-title event-title">Event Title</h5>
-          <p class="card-text"><strong><i class="fas fa-calendar"></i>&nbsp;&nbsp;March 15, 2024</strong> • 7:00 PM - 10:00 PM</p>
-          <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;UBCO, Kelowna BC, Canada</strong></p>
-          <p class="card-text">Join us for an unforgettable experience at our upcoming event! This is an
-            extraordinary opportunity to immerse yourself in a world of excitement, entertainment, and
-            inspiration. Get ready for a night filled with laughter, joy, and special moments that will
-            create lasting memories for you and your friends.</p>
-          <p class="card-text"><strong>Price:</strong> $20.00</p>
+          <h5 class="card-title event-title"> <%= event.eventTitle %> </h5>
+          <p class="card-text"><strong><i class="fas fa-calendar"></i>&nbsp;&nbsp;<%= event.eventDate %></strong></p>
+          <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;<%= event.address %></strong></p>
+          <p class="card-text"><%= event.description %></p>
+          <p class="card-text"><strong>Price:</strong> <%= event.ticketPrice %></p>
           <a href="#" class="btn btn-color btn-lg btn-block">Get Tickets</a>
         </div>
       </div>

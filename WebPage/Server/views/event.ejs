@@ -6,6 +6,8 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-G+OMwRq43m0p9KbHTmnzIMe6at/aG2lE5Gce1d2lAY/JTc5VHzx7Za0VSmECnSG4PTQp6ohslAso7Xe26BK4Rw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
 
@@ -16,10 +18,9 @@
 
   <!-- Header -->
   <%- include('partials/header.ejs'); %>
-  </div>
   
 <!-- Event Card -->
-<div class="container mt-5">
+<div class="container mt-5 fade-in1">
   <div class="card event-page">
     <div class="row no-gutters">
       <!-- Left side for details -->
@@ -34,8 +35,9 @@
         <div class="card-body">
           <!-- Adding a class to the event title for styling -->
           <h5 class="card-title event-title"> <%= event.eventTitle %> </h5>
-          <p class="card-text"><strong><i class="fas fa-calendar"></i>&nbsp;&nbsp;<%= event.eventDate %></strong></p>
-          <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;<%= event.address %></strong></p>
+          <p class="card-text"><strong><i class="far fa-calendar"></i><%= event.eventDate.toLocaleDateString('en-US', { timeZone: 'UTC' }) %>, <%= event.eventDate.toLocaleTimeString('en-US', { timeZone: 'UTC', hour: 'numeric', minute: 'numeric' }) %></strong></p>
+          <p class="card-text"><strong><i class="fas fa-map-marker-alt"></i><%= event.address %></strong></p>
+
           <p class="card-text"><%= event.description %></p>
           <p class="card-text"><strong>Price:</strong> <%= event.ticketPrice %></p>
           <a href="#" class="btn btn-color btn-lg btn-block">Get Tickets</a>

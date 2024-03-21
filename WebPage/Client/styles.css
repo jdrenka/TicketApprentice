@@ -13,7 +13,9 @@ body {
   padding: 20px 5%;
   height: 80px;
   background-color: rgba(0, 0, 0, 0.8);
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header a {
@@ -28,35 +30,35 @@ body {
   font-weight: 600;
 }
 
-.header a:hover {
-  transform: scale(1.03); /* Slightly larger scale */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-}
-  
 .header a.logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: #ffffff;
-  margin-top: 1.5rem;
+  margin-top: 0; /* Remove margin top */
+  margin-right: 1rem; /* Add margin between logo and buttons */
 }
 
 .header-right {
   margin-top: 0.5rem;
-  width: 60rem; 
-  float: right;
+  text-align: right;
 }
-  
-/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-@media screen and (max-width: 500px) {
-  .header a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-  .header-right {
-    float: none;
-  }
+
+.header-right .header-btn {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  line-height: 25px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-left: 1rem; /* Add margin between buttons */
 }
+
+.header-right .header-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
 
 .header .signin-register {
   background-color: #3B5CFF;
@@ -415,4 +417,7 @@ body .event-page {
 .browse-events-heading {
   font-size: 48px; /* Adjust the font size of "Browse Events" */
   font-weight: bold; /* Optionally, adjust the font weight if needed */
+}
+.form-group label {
+  color: white;
 }

@@ -217,6 +217,35 @@ app.get('/profile', (req, res) => {
    }); 
 });
 
+// Route handler for processing the createEvent form submission(from createEvents.ejs); includes empty '' placeholder img
+// Since the form does not include numTickets and categoryID, this method defaults them to preset values
+app.post('/createEvents', async (req, res) => {
+  console.log("TESTING TESTING ");
+  // Extracting form data from the request body
+  const { eventImage, eventName, eventDate, eventTime, eventLocation, eventDescription, ticketPrice } = req.body;
+
+   // Setting default values for numTickets and categoryID
+  const numTickets = 100;
+  const categoryID= 1;
+  try {
+    // SQL query to insert event information into the database
+    const SQL = 'INSERT INTO eventInfo (coverPhoto, eventTitle, eventDate, address, description, ticketPrice,numTickets,categoryID) VALUES (?,?,?,?,?,?,?,?)';
+    const [result] = await pool.query(SQL, [eventImage, eventName, eventDate, eventLocation, eventDescription, ticketPrice,numTickets,categoryID]);
+    
+    if (result.affectedRows > 0) {
+      console.log("Successfully updated db");
+      res.status(200).send('Event created successfully'); // Send a success response
+    } else {
+      console.log("No rows were affected. Insertion failed.");
+      res.status(500).send('Error creating event');
+    }
+  } catch (err) {
+    console.error("Error executing SQL query:", err);
+    res.status(500).send('Error creating event');
+  }
+});
+
+
 //Functions
 
 async function getEventDetailsById(eventId) {

@@ -55,7 +55,7 @@
   
           <div class="card bg-glass" style="border-radius: 20px;">
             <div class="card-body px-4 py-5 px-md-5">
-              <form>
+              <form action='/createEvents' method="post">
                 <style>
                   .position-relative {
                     position: relative;
@@ -100,7 +100,7 @@
                   </div>
                   <label for="eventImage" class="btn btn-primary btn-image rounded-rectangle">
                     Add Image
-                    <input type="file" id="eventImage" class="form-control d-none" accept="image/*" onchange="previewFile()">
+                    <input type="file" id="eventImage" name="eventImage" class="form-control d-none" accept="image/*" onchange="previewFile()">
                   </label>
                 </div>
 
@@ -166,31 +166,31 @@
 
                 <!-- Event name -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="eventName" class="form-control" />
+                  <input type="text" id="eventName" class="form-control" name="eventName" />
                   <label class="form-label" for="eventName">Event Name</label>
                 </div>
   
                 <!-- Event date -->
                 <div class="form-outline mb-4">
-                  <input type="date" id="eventDate" class="form-control" />
+                  <input type="date" id="eventDate" class="form-control" name="eventDate"/>
                   <label class="form-label" for="eventDate">Event Date</label>
                 </div>
   
                 <!-- Event time -->
                 <div class="form-outline mb-4">
-                  <input type="time" id="eventTime" class="form-control" />
+                  <input type="time" id="eventTime" class="form-control" name="eventTime" />
                   <label class="form-label" for="eventTime">Event Time</label>
                 </div>
   
                 <!-- Event location -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="eventLocation" class="form-control" />
+                  <input type="text" id="eventLocation" class="form-control" name="eventLocation" />
                   <label class="form-label" for="eventLocation">Event Location</label>
                 </div>
   
                 <!-- Event description -->
                 <div class="form-outline mb-4">
-                  <textarea id="eventDescription" class="form-control" rows="4"></textarea>
+                  <textarea id="eventDescription" class="form-control" rows="4" name="eventDescription"></textarea>
                   <label class="form-label" for="eventDescription">Event Description</label>
                 </div>
   
@@ -200,7 +200,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" step="any" id="ticketPrice" class="form-control" />
+                    <input type="number" step="any" id="ticketPrice" class="form-control" name="ticketPrice" />
                   </div>
                   <label class="form-label" for="ticketPrice">Ticket Price</label>
                 </div>

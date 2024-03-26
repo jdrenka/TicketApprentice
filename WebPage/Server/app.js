@@ -203,22 +203,59 @@ app.post('/login', async (req, res) => {
 });
 
 // Route to serve profile.ejs
-app.get('/profile', (req, res) => {
+app.get('/profile', async (req, res) => {
   const loggedIn = req.session.loggedin;
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
-  res.render('profile.ejs', { 
-    pageTitle: 'Profile', 
-    loggedIn,
-    userID,
-    username,
-    organizer  
-   }); 
+  
+  try {
+    const [userData] = await pool.query('SELECT * FROM person WHERE userID = ?', [userID]);
+    
+    if (!userData || userData.length === 0) {
+      console.log('No user data found');
+      return res.status(404).send('User not found');
+    }
+
+    console.log('User data:', userData); 
+
+    
+    res.render('profile.ejs', { 
+      pageTitle: 'Profile', 
+      loggedIn,
+      userID,
+      username,
+      organizer,
+      userData 
+    });
+  } catch (error) {
+    console.error('Error fetching user data:', error);
+    res.status(500).send('An error occurred');
+  }
 });
 
-//Functions
 
+
+
+// Route to update user profile
+app.post('/update-profile', async (req, res) => {
+  const userID = req.session.userID;
+  const { firstName, lastName, email, address, city, country, zipCode, province } = req.body;
+  try {
+    await pool.query(
+      'UPDATE person SET firstName = ?, lastName = ?, email = ?, address = ?, city = ?, country = ?, zipCode = ?, province = ? WHERE userID = ?',
+      [firstName, lastName, email, address, city, country, zipCode, province, userID]
+    );
+    res.redirect('/profile'); // Redirect to the profile page after updating
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error updating profile');
+  }
+});
+
+
+
+//Functions
 async function getEventDetailsById(eventId) {
   try {
     const [results, fields] = await pool.query('SELECT * FROM eventInfo WHERE eventID = ?', [eventId]);

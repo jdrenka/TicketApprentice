@@ -164,13 +164,25 @@ app.get('/contactOrganizer', (req, res) => {
 
 // Route to serve reviewEvents.ejs
 app.get('/review-events', async (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  const eventId = req.query.eventId;
   if (!req.session.isAdmin) { // Example check, adjust according to your auth logic
     return res.status(403).send('Unauthorized access.');
   }
 
   try {
     const [events] = await pool.query('SELECT * FROM eventQueue');
-    res.render('reviewEvents', { events }); // Display events in a reviewEvents.ejs view
+    res.render('reviewEvents', { 
+      pageTitle: 'Admin Panel', 
+      loggedIn,
+      userID,
+      username,
+      organizer,
+      events
+    });
   } catch (error) {
     console.error('Error fetching events for review:', error);
     res.status(500).send('Error fetching events for review');

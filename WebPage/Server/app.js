@@ -110,6 +110,23 @@ app.get('/contactUs', (req, res) => {
    }); 
 });
 
+// Route to handle contact form submission
+app.post('/submitContactForm', async (req, res) => {
+  const { firstName, lastName, email, subject, message } = req.body;
+  try {
+    // Insert the contact form data into the database
+    const [result] = await pool.query(
+      'INSERT INTO message (firstName, lastName, emailAddress, subject, message) VALUES (?, ?, ?, ?, ?)',
+      [firstName, lastName, email, subject, message]
+    );
+    res.redirect('/messageSent')
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error submitting contact form');
+  }
+});
+
+
 // Route to serve createEvents.ejs
 app.get('/createEvents', (req, res) => {
   const loggedIn = req.session.loggedin;
@@ -251,6 +268,21 @@ app.post('/update-profile', async (req, res) => {
     console.error(err);
     res.status(500).send('Error updating profile');
   }
+});
+
+// Route to serve messageSent.ejs
+app.get('/messageSent', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('messageSent.ejs', { 
+    pageTitle: 'Message Sent', 
+    loggedIn,
+    userID,
+    username,
+    organizer
+   }); 
 });
 
 

@@ -27,6 +27,7 @@ CREATE TABLE person (
     zipCode VARCHAR(255),
     province VARCHAR(255),
     organizer BOOLEAN NOT NULL DEFAULT FALSE,
+    admin BOOLEAN NOT NULL DEFAULT FALSE,  -- Must be hard coded. 
     PRIMARY KEY (userID)
 );
 
@@ -41,6 +42,20 @@ CREATE TABLE eventInfo (
     numTickets INTEGER,
     categoryID INTEGER,
     PRIMARY KEY (eventID)
+);
+
+CREATE TABLE eventQueue (
+    queueID INTEGER AUTO_INCREMENT,
+    eventTitle VARCHAR(255),
+    eventDate DATE,
+    address VARCHAR(255),
+    description VARCHAR(500),
+    ticketPrice DECIMAL(10,2),
+    numTickets INTEGER,
+    categoryID INTEGER,
+    submissionTimestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    reviewStatus ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
+    PRIMARY KEY (queueID)
 );
 
 CREATE TABLE ticket (

@@ -36,6 +36,7 @@ app.get(['/', '/index'], (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const isAdmin = req.session.isAdmin;
   
   // Check if the user is logged in
   if (loggedIn) {                             
@@ -48,7 +49,9 @@ app.get(['/', '/index'], (req, res) => {
       loggedIn,
       userID,
       username,
-      organizer  
+      organizer,
+      isAdmin
+
     });
   }
 });
@@ -142,6 +145,20 @@ app.get('/contactOrganizer', (req, res) => {
   
 });
 
+app.get('/review-events', async (req, res) => {
+  if (!req.session.isAdmin) { // Example check, adjust according to your auth logic
+    return res.status(403).send('Unauthorized access.');
+  }
+
+  try {
+    const [events] = await pool.query('SELECT * FROM eventQueue');
+    res.render('reviewEvents', { events }); // Display events in a reviewEvents.ejs view
+  } catch (error) {
+    console.error('Error fetching events for review:', error);
+    res.status(500).send('Error fetching events for review');
+  }
+});
+
 // Route to serve contactOrganizer.ejs
 app.get('/event', async (req, res) => {
   const loggedIn = req.session.loggedin;
@@ -189,6 +206,7 @@ app.post('/login', async (req, res) => {
               req.session.userID = users[0].userID;
               req.session.username = users[0].username;
               req.session.organizer = users[0].organizer;
+              req.session.isAdmin = true // users[0].admin;
               res.redirect('/browse-events');
           } else {
               res.send('Incorrect username and/or password!');
@@ -253,7 +271,20 @@ app.post('/update-profile', async (req, res) => {
   }
 });
 
-
+app.post('/submit-event', async (req, res) => {
+  const { eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID } = req.body;
+  console.log("testyyy", eventTitle);
+  try {
+    await pool.query(
+      'INSERT INTO eventQueue (eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID]
+    );
+    res.send('Event submitted for review.');
+  } catch (error) {
+    console.error('Error submitting event:', error);
+    res.status(500).send('Error submitting event');
+  }
+});
 
 //Functions
 async function getEventDetailsById(eventId) {

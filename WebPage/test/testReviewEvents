@@ -1,0 +1,33 @@
+
+//HTTP Testing with Jest Framework, supertest library
+const request = require('supertest');
+const app = require('./app'); 
+
+describe("Admin routes", () => {
+  test("Should return 403 for non-admin users trying to access /review-events", async () => {
+    const response = await request(app).get('/review-events');
+    expect(response.statusCode).toBe(403);
+  });
+
+  test("Should allow access to /review-events for admin users", async () => {
+    const loginResponse = await request(app)
+      .post('/login')
+      .send({ username: 'admin', password: 'password' }); 
+
+    const cookie = loginResponse.headers['set-cookie'];
+
+    const response = await request(app)
+      .get('/review-events')
+      .set('Cookie', cookie); 
+    expect(response.statusCode).toBe(200); // 200 means success/access granted
+  });
+});
+
+// Function to verify if user has isAdmin permissions. 
+function adminCheck(req, res, next) {
+    if (req.query.isAdmin === 'true') {
+      next();
+    } else {
+      res.status(403).send('Unauthorized');
+    }
+  }

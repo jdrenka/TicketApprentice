@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+ <!-- Header -->
+
+    <div class="container">
+        <h1>Event Review Queue</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Event Title</th>
+                    <th>Event Date</th>
+                    <th>Address</th>
+                    <th>Description</th>
+                    <th>Ticket Price</th>
+                    <th>Number of Tickets</th>
+                    <th>Category ID</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% events.forEach(function(event) { %>
+                    <tr>
+                        <td><%= event.eventTitle %></td>
+                        <td><%= event.eventDate ? event.eventDate.toISOString().split('T')[0] : 'No Date Provided' %></td>
+                        <td><%= event.address %></td>
+                        <td><%= event.description %></td>
+                        <td>
+                            <!-- Approve Action -->
+                            <form action="/approve-event" method="post" style="display:inline;">
+                                <input type="hidden" name="queueID" value="<%= event.queueID %>">
+                                <button type="submit" class="btn btn-success">Approve</button>
+                            </form>
+                            <!-- Reject Action -->
+                            <form action="/reject-event" method="post" style="display:inline;">
+                                <input type="hidden" name="queueID" value="<%= event.queueID %>">
+                                <button type="submit" class="btn btn-danger">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

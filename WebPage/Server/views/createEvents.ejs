@@ -55,7 +55,7 @@
   
           <div class="card bg-glass" style="border-radius: 20px;">
             <div class="card-body px-4 py-5 px-md-5">
-              <form>
+              <form action="/submit-event" method="post">
                 <style>
                   .position-relative {
                     position: relative;
@@ -166,13 +166,13 @@
 
                 <!-- Event name -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="eventName" class="form-control" />
+                  <input type="text" id="eventName" name="eventTitle"  class="form-control" />
                   <label class="form-label" for="eventName">Event Name</label>
                 </div>
   
                 <!-- Event date -->
                 <div class="form-outline mb-4">
-                  <input type="date" id="eventDate" class="form-control" />
+                  <input type="date" id="eventDate" name="eventDate" class="form-control" />
                   <label class="form-label" for="eventDate">Event Date</label>
                 </div>
   
@@ -184,13 +184,13 @@
   
                 <!-- Event location -->
                 <div class="form-outline mb-4">
-                  <input type="text" id="eventLocation" class="form-control" />
+                  <input type="text" id="eventLocation" name="address" class="form-control" />
                   <label class="form-label" for="eventLocation">Event Location</label>
                 </div>
   
                 <!-- Event description -->
                 <div class="form-outline mb-4">
-                  <textarea id="eventDescription" class="form-control" rows="4"></textarea>
+                  <textarea id="eventDescription" name="description" class="form-control" rows="4"></textarea>
                   <label class="form-label" for="eventDescription">Event Description</label>
                 </div>
   
@@ -200,7 +200,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">$</span>
                     </div>
-                    <input type="number" step="any" id="ticketPrice" class="form-control" />
+                    <input type="number" step="any" id="ticketPrice" name="ticketPrice" class="form-control" />
                   </div>
                   <label class="form-label" for="ticketPrice">Ticket Price</label>
                 </div>

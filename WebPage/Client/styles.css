@@ -72,6 +72,18 @@ body {
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+.header .logout {
+  background-color: rgb(0, 0, 0);
+  color: rgb(199, 57, 57);
+  padding: 1rem 2rem; 
+  width: 12rem;
+  font-size: 1rem;
+  margin-left: 1rem;
+  border-radius: 20px;
+  text-decoration: none; /* Remove underline for links */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
 .header .signin-register:hover {
     background-color: #1e90ff; /* Darker blue on hover */
     color: white;
@@ -419,5 +431,8 @@ body .event-page {
   font-weight: bold; /* Optionally, adjust the font weight if needed */
 }
 .form-group label {
+  color: white;
+}
+.table {
   color: white;
 }

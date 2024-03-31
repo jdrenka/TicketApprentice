@@ -113,6 +113,23 @@ app.get('/contactUs', (req, res) => {
    }); 
 });
 
+// Route to handle contact form submission
+app.post('/submitContactForm', async (req, res) => {
+  const { firstName, lastName, email, subject, message } = req.body;
+  try {
+    // Insert the contact form data into the database
+    const [result] = await pool.query(
+      'INSERT INTO message (firstName, lastName, emailAddress, subject, message) VALUES (?, ?, ?, ?, ?)',
+      [firstName, lastName, email, subject, message]
+    );
+    res.redirect('/messageSent')
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error submitting contact form');
+  }
+});
+
+
 // Route to serve createEvents.ejs
 app.get('/createEvents', (req, res) => {
   const loggedIn = req.session.loggedin;
@@ -145,14 +162,27 @@ app.get('/contactOrganizer', (req, res) => {
   
 });
 
+// Route to serve reviewEvents.ejs
 app.get('/review-events', async (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  const eventId = req.query.eventId;
   if (!req.session.isAdmin) { // Example check, adjust according to your auth logic
     return res.status(403).send('Unauthorized access.');
   }
 
   try {
     const [events] = await pool.query('SELECT * FROM eventQueue');
-    res.render('reviewEvents', { events }); // Display events in a reviewEvents.ejs view
+    res.render('reviewEvents', { 
+      pageTitle: 'Admin Panel', 
+      loggedIn,
+      userID,
+      username,
+      organizer,
+      events
+    });
   } catch (error) {
     console.error('Error fetching events for review:', error);
     res.status(500).send('Error fetching events for review');
@@ -271,6 +301,22 @@ app.post('/update-profile', async (req, res) => {
   }
 });
 
+// Route to serve messageSent.ejs
+app.get('/messageSent', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('messageSent.ejs', { 
+    pageTitle: 'Message Sent', 
+    loggedIn,
+    userID,
+    username,
+    organizer
+   }); 
+});
+
+// Route to serve submitting event
 app.post('/submit-event', async (req, res) => {
   const { eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID } = req.body;
   console.log("testyyy", eventTitle);

@@ -3,6 +3,10 @@ CREATE DATABASE IF NOT EXISTS AlphaBrainsDB;
 USE AlphaBrainsDB;
 
 
+-- Disable foreign key checks
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- Drop tables
 DROP TABLE IF EXISTS payment;
 DROP TABLE IF EXISTS administrator;
 DROP TABLE IF EXISTS eventOrganizer;
@@ -11,16 +15,21 @@ DROP TABLE IF EXISTS orderSummary;
 DROP TABLE IF EXISTS eventInfo;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS message;
+
+-- Re-enable foreign key checks
+SET FOREIGN_KEY_CHECKS = 1;
+
 
 -- Create table statements
 
 CREATE TABLE person (
-    userID INTEGER AUTO_INCREMENT,
+    userID INTEGER AUTO_INCREMENT UNIQUE,
     firstName VARCHAR(50),
     lastName VARCHAR(50),
-    username VARCHAR(50),
+    username VARCHAR(50) UNIQUE,
     password VARCHAR(255),
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     address VARCHAR(255),
     city VARCHAR(255),
     country VARCHAR(255),
@@ -103,6 +112,16 @@ CREATE TABLE category (
     categoryName VARCHAR(50),
     categoryCoverPhoto VARCHAR(255),
     PRIMARY KEY (categoryID)
+);
+
+CREATE TABLE message (
+    messageID INTEGER AUTO_INCREMENT,
+    firstName VARCHAR(255),
+    LastName VARCHAR(255),
+    emailAddress VARCHAR(255),
+    subject VARCHAR(255),
+    message VARCHAR(10000),
+    PRIMARY KEY (messageID)
 );
 
 -- ================ Add insert statements below here ================

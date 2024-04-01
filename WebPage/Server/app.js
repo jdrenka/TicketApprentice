@@ -5,10 +5,23 @@ const pool = require('./database'); // Import the MySQL connection pool
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2/promise');
 const session = require('express-session');
+const multer = require('multer');
 
 const app = express();
 const saltRounds = 10; //For encryption
 const port = process.env.PORT || 3000;
+
+//Storage settings for multer -> for our image uploads in createEvents
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/') // Make sure this directory exists
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+});
+
+const upload = multer({ storage: storage });
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -21,6 +34,7 @@ app.use(session({
 
 // Middleware to serve static files
 app.use(express.static(path.join(__dirname, '../client')));
+app.use('/uploads', express.static('uploads'));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -168,21 +182,16 @@ app.get('/review-events', async (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
-  const eventId = req.query.eventId;
+  
   if (!req.session.isAdmin) { // Example check, adjust according to your auth logic
     return res.status(403).send('Unauthorized access.');
   }
 
   try {
     const [events] = await pool.query('SELECT * FROM eventQueue');
-    res.render('reviewEvents', { 
-      pageTitle: 'Admin Panel', 
-      loggedIn,
-      userID,
-      username,
-      organizer,
-      events
-    });
+
+    res.render('reviewEvents', { events, loggedIn, userID, username, organizer }); // Display events in a reviewEvents.ejs view
+
   } catch (error) {
     console.error('Error fetching events for review:', error);
     res.status(500).send('Error fetching events for review');
@@ -317,18 +326,72 @@ app.get('/messageSent', (req, res) => {
 });
 
 // Route to serve submitting event
-app.post('/submit-event', async (req, res) => {
+
+app.post('/submit-event', upload.single('coverPhoto'), async (req, res) => {
+
   const { eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID } = req.body;
-  console.log("testyyy", eventTitle);
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
+  console.log(req.body);
   try {
     await pool.query(
-      'INSERT INTO eventQueue (eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID]
+      'INSERT INTO eventQueue (eventTitle, coverPhoto, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [eventTitle, imageUrl, eventDate, address, description, ticketPrice, numTickets, categoryID]
     );
-    res.send('Event submitted for review.');
+    res.redirect('/browse-events');
   } catch (error) {
     console.error('Error submitting event:', error);
     res.status(500).send('Error submitting event');
+  }
+});
+
+//Approve button admin page funcitonality. 
+app.post('/approve-event', async (req, res) => {
+  const { queueID } = req.body;
+
+  try {
+      // Fetch the event data from the eventQueue table
+      const [results, fields] = await pool.query('SELECT * FROM eventQueue WHERE queueID = ?', [queueID]);
+
+      if (results.length > 0) {
+          const eventData = results[0];
+          // Inserting event from the queue into real event table. 
+          await pool.query(
+              'INSERT INTO eventInfo (eventTitle, eventDate, address, coverPhoto, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+              [eventData.eventTitle, eventData.eventDate, eventData.address, eventData.coverPhoto, eventData.description, eventData.ticketPrice, eventData.numTickets, eventData.categoryID]
+          );
+
+          //This deletes the event from the admin queue
+          await pool.query('DELETE FROM eventQueue WHERE queueID = ?', [queueID]);
+
+          // Redirect after complete
+          res.redirect('/browse-events'); 
+      } else {
+          // Handle the case where no event data is found
+          res.status(404).send('Event not found');
+      }
+  } catch (error) {
+      console.error('Error processing approval:', error);
+      res.status(500).send('Error processing approval');
+  }
+});
+// Simply removes event from eventQueue on admin page.
+app.post('/reject-event', async (req, res) => {
+  const { queueID } = req.body;
+
+  try {
+      // Attempt to delete the event from the eventQueue table
+      const [result] = await pool.query('DELETE FROM eventQueue WHERE queueID = ?', [queueID]);
+
+      if (result.affectedRows > 0) {
+          // If the event was successfully deleted, redirect or respond
+          res.redirect('/review-events'); // Adjust the redirect path as needed
+      } else {
+          // If no rows were affected, it means no event was found with that queueID
+          res.status(404).send('Event not found or already rejected');
+      }
+  } catch (error) {
+      console.error('Error processing rejection:', error);
+      res.status(500).send('Error processing rejection');
   }
 });
 

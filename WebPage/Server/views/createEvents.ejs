@@ -55,7 +55,8 @@
   
           <div class="card bg-glass" style="border-radius: 20px;">
             <div class="card-body px-4 py-5 px-md-5">
-              <form action="/submit-event" method="post">
+              
+              <form action="/submit-event" method="post" enctype="multipart/form-data">
                 <style>
                   .position-relative {
                     position: relative;
@@ -100,7 +101,7 @@
                   </div>
                   <label for="eventImage" class="btn btn-primary btn-image rounded-rectangle">
                     Add Image
-                    <input type="file" id="eventImage" class="form-control d-none" accept="image/*" onchange="previewFile()">
+                    <input type="file" name= "coverPhoto" id="eventImage" class="form-control d-none" accept="image/*" onchange="previewFile()">
                   </label>
                 </div>
 
@@ -203,6 +204,26 @@
                     <input type="number" step="any" id="ticketPrice" name="ticketPrice" class="form-control" />
                   </div>
                   <label class="form-label" for="ticketPrice">Ticket Price</label>
+                </div>
+
+                <!-- Amount of tickets -->
+                <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="number" step="any" id="numTickets" name="numTickets" class="form-control" />
+                  </div>
+                  <label class="form-label" for="numTickets">Amount of tickets available</label>
+                </div>
+
+                 <!-- CategoryID Should be selection box in the future -->
+                 <div class="form-outline mb-4">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                    </div>
+                    <input type="number" step="any" id="categoryID" name="categoryID" class="form-control" />
+                  </div>
+                  <label class="form-label" for="categoryID">Category ID:</label>
                 </div>
   
                 <!-- Submit button -->

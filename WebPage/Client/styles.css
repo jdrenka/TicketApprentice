@@ -433,6 +433,19 @@ body .event-page {
 .form-group label {
   color: white;
 }
+
+
+.revieweventscontainer{
+  margin-top: 3vh;
+}
+
+.revieweventscontainer img{
+  border: 2px solid black; /* 2 pixels thick */
+  border-radius: 15px;
+  height: 5vw;
+  width: 5vw;
+}
+
 .table {
   color: white;
 }

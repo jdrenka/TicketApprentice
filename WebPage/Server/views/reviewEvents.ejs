@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review Events</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
+
+   
 </head>
 <body>
+    
  <!-- Header -->
  <%- include('partials/header.ejs'); %>
-    <div class="container">
-        <h1 style="color: white; text-align: left;">Event Review Queue</h1>
+
+    <div class="revieweventscontainer">
+        <h1 style="color: white;">Event Review Queue</h1>
 
 
         <table class="table">
             <thead>
                 <tr>
                     <th>Event Title</th>
+                    <th>Image</th>
                     <th>Event Date</th>
                     <th>Address</th>
                     <th>Description</th>
@@ -31,9 +36,20 @@
                 <% events.forEach(function(event) { %>
                     <tr>
                         <td><%= event.eventTitle %></td>
+                        <td>
+                            <!-- Display the image if the path is available -->
+                            <% if(event.coverPhoto) { %>
+                                <img src="<%= event.coverPhoto %>" alt="Event Image" style="width: 100px; height: auto;">
+                            <% } else { %>
+                                <p>No Image</p>
+                            <% } %>
+                        </td>
                         <td><%= event.eventDate ? event.eventDate.toISOString().split('T')[0] : 'No Date Provided' %></td>
                         <td><%= event.address %></td>
                         <td><%= event.description %></td>
+                        <td><%= event.ticketPrice %></td>
+                        <td><%= event.numTickets%></td>
+                        <td><%= event.categoryID %></td>
                         <td>
                             <!-- Approve Action -->
                             <form action="/approve-event" method="post" style="display:inline;">

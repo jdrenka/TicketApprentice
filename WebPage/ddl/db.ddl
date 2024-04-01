@@ -47,6 +47,7 @@ CREATE TABLE eventInfo (
 CREATE TABLE eventQueue (
     queueID INTEGER AUTO_INCREMENT,
     eventTitle VARCHAR(255),
+    coverPhoto VARCHAR(255),
     eventDate DATE,
     address VARCHAR(255),
     description VARCHAR(500),

@@ -5,10 +5,23 @@ const pool = require('./database'); // Import the MySQL connection pool
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2/promise');
 const session = require('express-session');
+const multer = require('multer');
 
 const app = express();
 const saltRounds = 10; //For encryption
 const port = process.env.PORT || 3000;
+
+//Storage settings for multer -> for our image uploads in createEvents
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'uploads/') // Make sure this directory exists
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  }
+});
+
+const upload = multer({ storage: storage });
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -271,13 +284,30 @@ app.post('/update-profile', async (req, res) => {
   }
 });
 
-app.post('/submit-event', async (req, res) => {
+// Route to serve messageSent.ejs
+app.get('/messageSent', (req, res) => {
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+  res.render('messageSent.ejs', { 
+    pageTitle: 'Message Sent', 
+    loggedIn,
+    userID,
+    username,
+    organizer
+   }); 
+});
+
+// Route to serve submitting event
+app.post('/submit-event', upload.single('coverPhoto'), async (req, res) => {
   const { eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID } = req.body;
-  console.log("testyyy", eventTitle);
+  const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
+  console.log(req.body);
   try {
     await pool.query(
-      'INSERT INTO eventQueue (eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID]
+      'INSERT INTO eventQueue (eventTitle, coverPhoto, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+      [eventTitle, imageUrl, eventDate, address, description, ticketPrice, numTickets, categoryID]
     );
     res.send('Event submitted for review.');
   } catch (error) {

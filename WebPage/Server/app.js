@@ -34,6 +34,7 @@ app.use(session({
 
 // Middleware to serve static files
 app.use(express.static(path.join(__dirname, '../client')));
+app.use('/uploads', express.static('uploads'));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -159,13 +160,19 @@ app.get('/contactOrganizer', (req, res) => {
 });
 
 app.get('/review-events', async (req, res) => {
-  if (!req.session.isAdmin) { // Example check, adjust according to your auth logic
+
+  const loggedIn = req.session.loggedin;
+  const userID = req.session.userID; 
+  const username = req.session.username;
+  const organizer = req.session.organizer;
+
+  if (!req.session.isAdmin) { 
     return res.status(403).send('Unauthorized access.');
   }
 
   try {
     const [events] = await pool.query('SELECT * FROM eventQueue');
-    res.render('reviewEvents', { events }); // Display events in a reviewEvents.ejs view
+    res.render('reviewEvents', { events, loggedIn, userID, username, organizer }); // Display events in a reviewEvents.ejs view
   } catch (error) {
     console.error('Error fetching events for review:', error);
     res.status(500).send('Error fetching events for review');

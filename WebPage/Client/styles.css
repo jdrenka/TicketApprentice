@@ -421,3 +421,12 @@ body .event-page {
 .form-group label {
   color: white;
 }
+
+.revieweventscontainer{
+  background-color: rgb(118, 137, 165);
+}
+
+.revieweventscontainer img{
+  border: 2px solid black; /* 2 pixels thick */
+  border-radius: 10px;
+}

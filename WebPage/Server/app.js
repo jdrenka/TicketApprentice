@@ -316,10 +316,61 @@ app.post('/submit-event', upload.single('coverPhoto'), async (req, res) => {
       'INSERT INTO eventQueue (eventTitle, coverPhoto, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
       [eventTitle, imageUrl, eventDate, address, description, ticketPrice, numTickets, categoryID]
     );
-    res.send('Event submitted for review.');
+    res.redirect('/browse-events');
   } catch (error) {
     console.error('Error submitting event:', error);
     res.status(500).send('Error submitting event');
+  }
+});
+
+//Approve button admin page funcitonality. 
+app.post('/approve-event', async (req, res) => {
+  const { queueID } = req.body;
+
+  try {
+      // Fetch the event data from the eventQueue table
+      const [results, fields] = await pool.query('SELECT * FROM eventQueue WHERE queueID = ?', [queueID]);
+
+      if (results.length > 0) {
+          const eventData = results[0];
+          // Inserting event from the queue into real event table. 
+          await pool.query(
+              'INSERT INTO eventInfo (eventTitle, eventDate, address, coverPhoto, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+              [eventData.eventTitle, eventData.eventDate, eventData.address, eventData.coverPhoto, eventData.description, eventData.ticketPrice, eventData.numTickets, eventData.categoryID]
+          );
+
+          //This deletes the event from the admin queue
+          await pool.query('DELETE FROM eventQueue WHERE queueID = ?', [queueID]);
+
+          // Redirect after complete
+          res.redirect('/browse-events'); 
+      } else {
+          // Handle the case where no event data is found
+          res.status(404).send('Event not found');
+      }
+  } catch (error) {
+      console.error('Error processing approval:', error);
+      res.status(500).send('Error processing approval');
+  }
+});
+// Simply removes event from eventQueue on admin page.
+app.post('/reject-event', async (req, res) => {
+  const { queueID } = req.body;
+
+  try {
+      // Attempt to delete the event from the eventQueue table
+      const [result] = await pool.query('DELETE FROM eventQueue WHERE queueID = ?', [queueID]);
+
+      if (result.affectedRows > 0) {
+          // If the event was successfully deleted, redirect or respond
+          res.redirect('/review-events'); // Adjust the redirect path as needed
+      } else {
+          // If no rows were affected, it means no event was found with that queueID
+          res.status(404).send('Event not found or already rejected');
+      }
+  } catch (error) {
+      console.error('Error processing rejection:', error);
+      res.status(500).send('Error processing rejection');
   }
 });
 

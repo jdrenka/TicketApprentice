@@ -423,10 +423,13 @@ body .event-page {
 }
 
 .revieweventscontainer{
-  background-color: rgb(118, 137, 165);
+  margin-top: 3vh;
+  background-color: rgb(76, 87, 103);
 }
 
 .revieweventscontainer img{
   border: 2px solid black; /* 2 pixels thick */
-  border-radius: 10px;
+  border-radius: 15px;
+  height: 5vw;
+  width: 5vw;
 }

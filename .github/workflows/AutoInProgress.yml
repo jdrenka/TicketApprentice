@@ -20,4 +20,4 @@ jobs:
         with:
           project: Docs Work
           column: In Progress
-          repo-token: ${{secrets.PERSONALACCESSTOKEN}}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

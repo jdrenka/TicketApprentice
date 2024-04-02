@@ -189,12 +189,27 @@ app.get('/review-events', async (req, res) => {
 
   try {
     const [events] = await pool.query('SELECT * FROM eventQueue');
+    const [messages] = await pool.query('SELECT * FROM message');
 
-    res.render('reviewEvents', { events, loggedIn, userID, username, organizer }); // Display events in a reviewEvents.ejs view
+    res.render('reviewEvents', { events, loggedIn, userID, username, organizer, messages});
 
   } catch (error) {
     console.error('Error fetching events for review:', error);
     res.status(500).send('Error fetching events for review');
+  }
+});
+
+// Route to handle deleting a message
+app.post('/delete-message', async (req, res) => {
+  const { messageID } = req.body; 
+
+  try {
+    await pool.query('DELETE FROM message WHERE messageID = ?', [messageID]);
+    
+    res.redirect('/review-events');
+  } catch (error) {
+    console.error('Error deleting message:', error);
+    res.status(500).send('Error deleting message');
   }
 });
 
@@ -325,8 +340,9 @@ app.get('/messageSent', (req, res) => {
    }); 
 });
 
-// Route to serve submitting event
 
+
+// Route to serve submitting event
 app.post('/submit-event', upload.single('coverPhoto'), async (req, res) => {
 
   const { eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID } = req.body;

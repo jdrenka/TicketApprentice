@@ -21,11 +21,11 @@
 <div class="container-fluid fade-in1 d-flex justify-content-center align-items-center" style="background-image: url('Images/browseEvents.jpg'); background-size: cover; background-position: center; height: 50vh;">
   <div class="center-text" style="line-height: 0;">
     <h1 class="browse-events-heading">Browse Events</h1>
-    <a class="small-text">What kind of event are you looking for?</a>
-    <form class="form d-flex justify-content-between align-items-center" style="width: 100%;">
+    <a class="small-text">What kind of event are you looking for?</a>    
+    <form class="form d-flex justify-content-between align-items-center" style="width: 100%;" method="GET" action='browse-events'>
       <div class="input-group" style="width: 100%;">
         <i class="fa fa-search fa-lg"></i>
-        <input type="text" class="form-control form-input rounded custom-height-lg" placeholder="Search events" style="background: white; width: 600px; margin-top: 20px;"> <!-- Adjusted width directly -->
+        <input type="text" class="form-control form-input rounded custom-height-lg" placeholder="Search events" name="searchTerm" style="background: white; width: 600px; margin-top: 20px;"> <!-- Adjusted width directly -->
         <span class="left-pan"><i class="fa fa-microphone fa-lg"></i></span>
       </div>
     </form>

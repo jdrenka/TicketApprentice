@@ -86,13 +86,30 @@ app.get('/logout', (req, res) => {
 });
 
 // Route to serve browseEvents.ejs
+//modified to check for searchTerm from the searchbar. If it exists, it will render searchResults.ejs containing the results
 app.get('/browse-events', async (req, res) => {
   try {
+    const searchTerm = req.query.searchTerm;
+    // Retrieve user-related information from the session
     const loggedIn = req.session.loggedin;
     const userID = req.session.userID; 
     const username = req.session.username;
     const organizer = req.session.organizer;
 
+    if (searchTerm){
+    // Your SQL query to search events based on the search term
+    const query = 'SELECT * FROM eventInfo WHERE eventTitle LIKE ? OR description like ?';
+    const [searchResults] = await pool.query(query, [`%${searchTerm}%`, `%${searchTerm}%`]);
+
+    // Render the SearchResults.ejs page and pass the search results to it
+    res.render('searchResults', { 
+      searchResults,
+      loggedIn,
+      userID,
+      username,
+      organizer
+    });
+  }else{
     const [events] = await pool.query('SELECT * FROM eventInfo');
     const [categories] = await pool.query('SELECT * FROM category');
     
@@ -105,12 +122,44 @@ app.get('/browse-events', async (req, res) => {
       organizer,
       categories
      }); 
-    
+  }
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');
   }
 });
+
+
+/*
+app.get('/browse-events/:searchTerm', async (req, res) => {
+  try {
+    console.log("successfuly ran function on line 117");
+    const searchTerm = req.params.searchTerm; // Extract search term from URL parameters
+
+    // Retrieve user-related information from the session
+    const loggedIn = req.session.loggedin;
+    const userID = req.session.userID; 
+    const username = req.session.username;
+    const organizer = req.session.organizer;
+
+    // Your SQL query to search events based on the search term
+    const query = 'SELECT * FROM eventInfo WHERE eventTitle LIKE ? OR description like ?';
+    const [searchResults] = await pool.query(query, [`%${searchTerm}%`, `%${searchTerm}%`]);
+
+    // Render the SearchResults.ejs page and pass the search results to it
+    res.render('searchResults', { 
+      searchResults,
+      loggedIn,
+      userID,
+      username,
+      organizer
+   });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred');
+  }
+});
+*/
 
 // Route to serve contactUs.ejs
 app.get('/contactUs', (req, res) => {

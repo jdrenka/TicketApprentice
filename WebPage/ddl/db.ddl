@@ -118,7 +118,7 @@ CREATE TABLE category (
 CREATE TABLE message (
     messageID INTEGER AUTO_INCREMENT,
     firstName VARCHAR(255),
-    LastName VARCHAR(255),
+    lastName VARCHAR(255),
     emailAddress VARCHAR(255),
     subject VARCHAR(255),
     message VARCHAR(10000),

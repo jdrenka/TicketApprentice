@@ -54,12 +54,12 @@
                             <!-- Approve Action -->
                             <form action="/approve-event" method="post" style="display:inline;">
                                 <input type="hidden" name="queueID" value="<%= event.queueID %>">
-                                <button type="submit" class="btn btn-success">Approve</button>
+                                <button type="submit" id = approvebutton class="btn btn-success">Approve</button>
                             </form>
                             <!-- Reject Action -->
                             <form action="/reject-event" method="post" style="display:inline;">
                                 <input type="hidden" name="queueID" value="<%= event.queueID %>">
-                                <button type="submit" class="btn btn-danger">Reject</button>
+                                <button type="submit" id = 'rejectbutton' class="btn btn-danger">Reject</button>
                             </form>
                         </td>
                     </tr>

@@ -449,3 +449,33 @@ body .event-page {
 .table {
   color: white;
 }
+
+#rejectbutton{
+  color: black;
+  margin-top: 10px;
+  background-color: burlywood;
+  border: #002bff 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+#rejectbutton:hover {
+  /* Hover state */
+  transform: scale(1.05); /* Slightly larger */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+#approvebutton{
+  background-color: #395b9b;
+  border: #002bff 2px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform: scale(1);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+#approvebutton:hover {
+  /* Hover state */
+  transform: scale(1.05); /* Slightly larger */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}

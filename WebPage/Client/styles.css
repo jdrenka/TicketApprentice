@@ -437,6 +437,8 @@ body .event-page {
 
 .revieweventscontainer{
   margin-top: 3vh;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .revieweventscontainer img{
@@ -448,7 +450,12 @@ body .event-page {
 
 .table {
   color: white;
+  font-weight: 200;
 }
+.table td {
+  text-align: left;
+}
+
 
 #rejectbutton{
   color: black;

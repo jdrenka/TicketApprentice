@@ -1,0 +1,64 @@
+const { JSDOM } = require('jsdom');
+const assert = require('assert');
+const fs = require('fs');
+
+// Read the event.ejs file
+const eventEjs = fs.readFileSync('WebPage\Server\views\event.ejs', 'utf8');
+
+describe('Event Page HTML Structure', function () {
+  let dom;
+
+  before(function () {
+    // Create a virtual DOM environment
+    dom = new JSDOM(eventEjs, { url: 'http://localhost' });
+  });
+
+  describe('Review Form Functionality', function () {
+    it('should have the name input field in the review form', function () {
+      const nameInput = dom.window.document.querySelector('#name');
+      assert.notEqual(nameInput, null);
+    });
+  
+    it('should have the email input field in the review form', function () {
+      const emailInput = dom.window.document.querySelector('#email');
+      assert.notEqual(emailInput, null);
+    });
+  
+    it('should have the rating input field in the review form', function () {
+      const ratingInput = dom.window.document.querySelector('#rating');
+      assert.notEqual(ratingInput, null);
+    });
+  
+    it('should have the review input field in the review form', function () {
+      const reviewInput = dom.window.document.querySelector('#review');
+      assert.notEqual(reviewInput, null);
+    });
+  
+    it('should have the submit button in the review form', function () {
+      const submitButton = dom.window.document.querySelector('#reviewForm button[type="submit"]');
+      assert.notEqual(submitButton, null);
+    });
+  });
+  
+  describe('Review List Functionality', function () {
+    it('should display the correct number of reviews', function () {
+      const reviews = dom.window.document.querySelectorAll('.review-list li');
+      assert.equal(reviews.length, 1);
+    });
+  
+    it('should display the user name in each review', function () {
+      const userName = dom.window.document.querySelector('.review-list li h4');
+      assert.notEqual(userName, null);
+    });
+  
+    it('should display the review text in each review', function () {
+      const reviewText = dom.window.document.querySelector('.review-list li .review-description p');
+      assert.notEqual(reviewText, null);
+    });
+  
+    it('should display the publish date in each review', function () {
+      const publishDate = dom.window.document.querySelector('.review-list li .publish');
+      assert.notEqual(publishDate, null);
+    });
+  });
+});

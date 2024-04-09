@@ -8,9 +8,9 @@
       <a href="/contactOrganizer">Contact Organizer</a>
       <% if (loggedIn) { %>
 
-     
+        <% if (admin == 1) { %> 
          <a id = 'review_events' href="/review-events">Review Events (Admin)</a>
-        
+         <% } %>
 
         <% if (organizer) { %>
           <a id = 'create_event' href="/createEvents">Create Event</a>

@@ -254,6 +254,13 @@ body .event-card:hover {
 .btn-color:hover {
   background-color: #1e90ff; /* Set a slightly different color on hover if desired */
 }
+
+.userlevel{
+  displaY: flex;
+  color: white;
+  gap: 20px;
+}
+
 #bgVideo {
   position: fixed;
   top: 50%;

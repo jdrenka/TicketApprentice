@@ -50,7 +50,7 @@ app.get(['/', '/index'], (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
-  const isAdmin = req.session.isAdmin;
+  const admin = req.session.isAdmin;
   
   // Check if the user is logged in
   if (loggedIn) {                             
@@ -64,7 +64,7 @@ app.get(['/', '/index'], (req, res) => {
       userID,
       username,
       organizer,
-      isAdmin
+      admin
 
     });
   }
@@ -95,6 +95,7 @@ app.get('/browse-events', async (req, res) => {
     const userID = req.session.userID; 
     const username = req.session.username;
     const organizer = req.session.organizer;
+    const admin = req.session.isAdmin;
 
     if (searchTerm){
     // Your SQL query to search events based on the search term
@@ -107,7 +108,8 @@ app.get('/browse-events', async (req, res) => {
       loggedIn,
       userID,
       username,
-      organizer
+      organizer,
+      admin
     });
   }else{
     const [events] = await pool.query('SELECT * FROM eventInfo');
@@ -120,7 +122,8 @@ app.get('/browse-events', async (req, res) => {
       userID,
       username,
       organizer,
-      categories
+      categories,
+      admin
      }); 
   }
   } catch (error) {
@@ -167,12 +170,14 @@ app.get('/contactUs', (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const admin = req.session.isAdmin;
   res.render('contactUs.ejs', { 
     pageTitle: 'Contact Us', 
     loggedIn,
     userID,
     username,
-    organizer
+    organizer,
+    admin
    }); 
 });
 
@@ -199,12 +204,14 @@ app.get('/createEvents', (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const admin = req.session.isAdmin;
   res.render('createEvents.ejs', { 
     pageTitle: 'Create Events', 
     loggedIn,
     userID,
     username,
-    organizer  
+    organizer,
+    admin
    }); 
   
 });
@@ -215,12 +222,14 @@ app.get('/contactOrganizer', (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const admin = req.session.isAdmin;
   res.render('contactOrganizer.ejs', { 
     pageTitle: 'Contact Organizer', 
     loggedIn,
     userID,
     username,
-    organizer  
+    organizer,
+    admin
    }); 
   
 });
@@ -231,6 +240,7 @@ app.get('/review-events', async (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const admin = req.session.isAdmin;
   
   if (!req.session.isAdmin) { // Example check, adjust according to your auth logic
     return res.status(403).send('Unauthorized access.');
@@ -240,7 +250,7 @@ app.get('/review-events', async (req, res) => {
     const [events] = await pool.query('SELECT * FROM eventQueue');
     const [messages] = await pool.query('SELECT * FROM message');
 
-    res.render('reviewEvents', { events, loggedIn, userID, username, organizer, messages});
+    res.render('reviewEvents', { events, loggedIn, userID, username, organizer, messages, admin});
 
   } catch (error) {
     console.error('Error fetching events for review:', error);
@@ -269,6 +279,7 @@ app.get('/event', async (req, res) => {
   const username = req.session.username;
   const organizer = req.session.organizer;
   const eventId = req.query.eventId;
+  const admin = req.session.isAdmin;
   const eventDetails = await getEventDetailsById(eventId);
   res.render('event.ejs', { 
     pageTitle: 'Event', 
@@ -276,6 +287,7 @@ app.get('/event', async (req, res) => {
     userID,
     username,
     organizer,
+    admin,
     event: eventDetails
    }); 
   
@@ -309,7 +321,7 @@ app.post('/login', async (req, res) => {
               req.session.userID = users[0].userID;
               req.session.username = users[0].username;
               req.session.organizer = users[0].organizer;
-              req.session.isAdmin = true // users[0].admin;
+              req.session.isAdmin = users[0].admin;
               res.redirect('/browse-events');
           } else {
               res.send('Incorrect username and/or password!');
@@ -329,6 +341,7 @@ app.get('/profile', async (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const admin = req.session.isAdmin;
   
   try {
     const [userData] = await pool.query('SELECT * FROM person WHERE userID = ?', [userID]);
@@ -338,16 +351,14 @@ app.get('/profile', async (req, res) => {
       return res.status(404).send('User not found');
     }
 
-    console.log('User data:', userData); 
-
-    
     res.render('profile.ejs', { 
       pageTitle: 'Profile', 
       loggedIn,
       userID,
       username,
       organizer,
-      userData 
+      admin,
+      userData
     });
   } catch (error) {
     console.error('Error fetching user data:', error);
@@ -380,12 +391,14 @@ app.get('/messageSent', (req, res) => {
   const userID = req.session.userID; 
   const username = req.session.username;
   const organizer = req.session.organizer;
+  const admin = req.session.isAdmin;
   res.render('messageSent.ejs', { 
     pageTitle: 'Message Sent', 
     loggedIn,
     userID,
     username,
-    organizer
+    organizer,
+    admin
    }); 
 });
 

@@ -16,11 +16,27 @@
 
   <!-- Header -->
   <%- include('partials/header.ejs'); %>
+
+ 
+
   <!-- Profile Content -->
   <div class="container mt-5 fade-in1">
     <div class="row">
       <div class="col-md-6 offset-md-3 " style="text-align: left;" >
         <h2 class="mb-4" style="color: white; border-bottom: 1px solid white; padding-bottom: 5px;">Edit Profile</h2>
+        
+        <!-- User Level Display -->
+        <div class = 'userlevel'>
+          <h3 class = 'mb-4' >User Level:</h3>
+          <% if (organizer) { %>
+            <h3 class = 'mb-4' style="color: rgb(72, 72, 213);">Organizer</h3>
+            <% }else if (admin == 1){ %>
+            <h3 class = 'mb-4' style="color: rgb(72, 72, 213);">Admin</h3>
+            <% }else{ %>
+              <h3 class = 'mb-4' style="color: rgb(72, 72, 213);">Standard</h3>
+            <% } %> 
+        </div>
+
         <form id="profileForm" action="/update-profile" method="POST">
 
           <h4 class="mb-4" style="color: white;">Contact Information</h4>

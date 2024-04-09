@@ -41,11 +41,45 @@
           <p class="card-text"><%= event.description %></p>
           <p class="card-text"><strong>Price:</strong> <%= event.ticketPrice %></p>
           <a href="#" class="btn btn-color btn-lg btn-block">Get Tickets</a>
+          <button id="contactButton" class="btn btn-color btn-lg btn-block">Contact Organizer</button>
+
         </div>
       </div>
     </div>
   </div>
 </div>
+  
+  <!-- Form Container -->
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div id="contactFormContainer" style="display: none;">
+          <form id="contactForm" action="/contactOrganizer" method="post">
+            <!-- Hidden input fields for event ID and organizer ID -->
+            <input type="hidden" id="eventId" name="eventId" value="">
+            <input type="hidden" id="organizerId" name="organizerId" value="">
+          
+            <!-- Subject input -->
+            <div class="form-outline mb-2">
+              <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject">
+              <label class="form-label" for="subject">Subject</label>
+            </div>
+          
+            <!-- Message input -->
+            <div class="form-outline mb-2">
+              <textarea id="message" name="message" class="form-control" rows="4" placeholder="Enter your message"></textarea>
+              <label class="form-label" for="message">Message</label>
+            </div>
+          
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Review Form -->
 <div class="container">
@@ -224,5 +258,19 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh+WyAqB04l72T1rAlu2+nDrS4kRGCpTXwiG"
     crossorigin="anonymous"></script>
+
+  <script>
+    // Get references to the button and form container
+    const contactButton = document.getElementById('contactButton');
+    const contactFormContainer = document.getElementById('contactFormContainer');
+    const contactForm = document.getElementById('contactForm');
+
+    // Add event listener to the button
+    contactButton.addEventListener('click', () => {
+      // Toggle the visibility of the form
+      contactFormContainer.style.display = contactFormContainer.style.display === 'none' ? 'block' : 'none';
+    });
+
+  </script>
 </body>
 </html>

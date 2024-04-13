@@ -96,14 +96,20 @@ app.get('/browse-events', async (req, res) => {
     const username = req.session.username;
     const organizer = req.session.organizer;
     const admin = req.session.isAdmin;
+    let pageTitle = 'Browse Events';
+
+    //for clicking on categories
+    const categoryID = req.query.categoryID;
 
     if (searchTerm){
     // Your SQL query to search events based on the search term
     const query = 'SELECT * FROM eventInfo WHERE eventTitle LIKE ? OR description like ?';
     const [searchResults] = await pool.query(query, [`%${searchTerm}%`, `%${searchTerm}%`]);
+    pageTitle = "Search Results";
 
     // Render the SearchResults.ejs page and pass the search results to it
     res.render('searchResults', { 
+      pageTitle,
       searchResults,
       loggedIn,
       userID,
@@ -111,21 +117,42 @@ app.get('/browse-events', async (req, res) => {
       organizer,
       admin
     });
-  }else{
-    const [events] = await pool.query('SELECT * FROM eventInfo');
-    const [categories] = await pool.query('SELECT * FROM category');
-    
-    res.render('browseEvents', { 
-      pageTitle: 'Browse Events', 
-      events,
-      loggedIn,
-      userID,
-      username,
-      organizer,
-      categories,
-      admin
-     }); 
-  }
+    }
+    else if (categoryID) { // Check if categoryID exists
+      console.log ("GOT TO CATEGORY ID BLOCK");
+
+      const categoryQuery = 'SELECT * FROM eventInfo WHERE categoryID = ?';
+      const [searchResults] = await pool.query(categoryQuery, [categoryID]);
+      // Your SQL query to retrieve events belonging to the specified category
+      if (searchResults && searchResults.length > 0) {
+        pageTitle = searchResults[0].categoryName; // Set pageTitle to category name
+      }
+
+      res.render('searchResults', { 
+        pageTitle,
+        searchResults,
+        loggedIn,
+        userID,
+        username,
+        organizer,
+        admin
+      });
+    }
+    else{
+      const [events] = await pool.query('SELECT * FROM eventInfo');
+      const [categories] = await pool.query('SELECT * FROM category');
+      
+      res.render('browseEvents', { 
+        pageTitle,
+        events,
+        loggedIn,
+        userID,
+        username,
+        organizer,
+        categories,
+        admin
+      }); 
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send('An error occurred');

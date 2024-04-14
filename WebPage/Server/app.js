@@ -1,4 +1,5 @@
 //Requires
+require('dotenv').config({ path: 'C:/Users/Justin Drenka/Desktop/Alpha_Brains/.env' });
 const express = require('express');
 const path = require('path');
 const pool = require('./database'); // Import the MySQL connection pool

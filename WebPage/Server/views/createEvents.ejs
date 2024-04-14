@@ -218,12 +218,16 @@
 
                  <!-- CategoryID Should be selection box in the future -->
                  <div class="form-outline mb-4">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                    </div>
-                    <input type="number" step="any" id="categoryID" name="categoryID" class="form-control" />
-                  </div>
-                  <label class="form-label" for="categoryID">Category ID:</label>
+                  <label class="form-label" for="categorySelect">Category:</label>
+                  <select class="form-select" id="categorySelect" name="categoryID">
+                    <option value="">Select a category...</option>
+                    <option value="1">Concerts</option>
+                    <option value="2">Sports</option>
+                    <option value="3">Fitness</option>
+                    <option value="4">Tech</option>
+                    <option value="5">Comedy</option>
+                    <option value="6">Art</option>
+                  </select>
                 </div>
   
                 <!-- Submit button -->

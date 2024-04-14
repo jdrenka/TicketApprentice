@@ -50,7 +50,7 @@
           <% } %>
           <div class="card-body">
             <h5 class="card-title"><%= category.categoryName %></h5>
-            <a href="#" class="stretched-link"></a>
+            <a href="/browse-events?categoryID=<%= category.categoryID %>" class="stretched-link"></a>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
 
 <!-- Featured events section -->
 <div class="container mt-5 fade-in1">
-  <div class="left-text">Featured Events</div>
+  <div class="left-text"><%= pageTitle %></div>
   <br>
   <div class="row justify-content-center">
     <% events.forEach(event => { %>

@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 // Middleware to serve static files
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, '../Client')));
 app.use('/uploads', express.static('uploads'));
 
 app.set('view engine', 'ejs');
@@ -437,7 +437,7 @@ app.post('/submit-event', upload.single('coverPhoto'), async (req, res) => {
 
   const { eventTitle, eventDate, address, description, ticketPrice, numTickets, categoryID } = req.body;
   const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
-  console.log(req.body);
+  
   try {
     await pool.query(
       'INSERT INTO eventQueue (eventTitle, coverPhoto, eventDate, address, description, ticketPrice, numTickets, categoryID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',

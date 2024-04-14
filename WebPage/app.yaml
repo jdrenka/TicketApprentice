@@ -1,0 +1,14 @@
+runtime: nodejs18
+env: standard
+entrypoint: node Server/app.js
+automatic_scaling:
+  min_idle_instances: automatic
+  max_idle_instances: automatic
+  min_pending_latency: automatic
+  max_pending_latency: automatic
+env_variables:
+  DB_HOST: '34.67.230.194'
+  DB_USER: 'root'
+  DB_PASSWORD: 'alphabrainsdb'
+  DB_DATABASE: 'AlphaBrainsDB'
+  DB_CONNECTION_LIMIT: '10'
